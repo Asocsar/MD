@@ -3,9 +3,9 @@
 setwd("C:/Users/danie/Desktop/MD/MD/D2") #set the working directory
 df <- read.delim("All_GPUs.csv",sep = ',',header=T);
 names(df)
-var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate")
+var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate", "Release_Date")
 var_binarias <- c("Dedicated", "Notebook_GPU", "SLI_Crossfire");
-var_cualitativas <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Memory_Bus", "Name", "Release_Date", "Resolution_WxH")
+var_cualitativas <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Memory_Bus", "Name", "Resolution_WxH")
 vars <- c(var_numericas, var_binarias, var_cualitativas)
 set.seed(28061963)
 sam<-as.vector(sort(sample(1:nrow(df),2000)))
@@ -34,6 +34,7 @@ df[var_numericas]$Memory_Speed <- sub(" MHz", "", df[var_numericas]$Memory_Speed
 df[var_numericas]$Memory_Speed <- as.numeric(df[var_numericas]$Memory_Speed)
 df[var_numericas]$Texture_Rate <- sub(" GTexel/s", "", df[var_numericas]$Texture_Rate)
 df[var_numericas]$Texture_Rate <- as.numeric(df[var_numericas]$Texture_Rate)
+df[var_numericas]$Release_Date <- sub("\n", "", df[var_numericas]$Release_Date)
 df[var_numericas]
 
 ```
@@ -42,7 +43,6 @@ df[var_numericas]
 ```{r}
 df[var_cualitativas]$Memory_Bus <- sub(" Bit", "", df[var_cualitativas]$Memory_Bus)
 df[var_cualitativas]$Direct_X <- sub("DX ", "", df[var_cualitativas]$Direct_X)
-df[var_cualitativas]$Release_Date <- sub("\n", "", df[var_cualitativas]$Release_Date)
 df[var_cualitativas]$Open_GL <- as.factor(df[var_cualitativas]$Open_GL)
 df[var_cualitativas]$Shader <- as.factor(df[var_cualitativas]$Shader)
 df[var_cualitativas]$Direct_X <- as.factor(df[var_cualitativas]$Direct_X)
