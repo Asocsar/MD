@@ -1,6 +1,6 @@
 #Row selection
 ```{r}
-setwd("C:/Users/danie/Desktop/MD") #set the working directory
+setwd("C:/Users/danie/Desktop/MD/MD/D2") #set the working directory
 df <- read.delim("All_GPUs.csv",sep = ',',header=T);
 names(df)
 var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate")
@@ -70,6 +70,11 @@ for (i in var_cualitativas){
   print(i,)
   print(sum(is.na(df_selected[i])),)
 }
+```
+
+
+```{r}
+write.csv(df_clean, "clean_table.csv", row.names = FALSE)
 ```
 
 
