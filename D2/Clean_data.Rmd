@@ -41,9 +41,11 @@ df[var_numericas]
 
 ```{r}
 df[var_cualitativas]$Memory_Bus <- sub(" Bit", "", df[var_cualitativas]$Memory_Bus)
+df[var_cualitativas]$Direct_X <- sub("DX ", "", df[var_cualitativas]$Direct_X)
 df[var_cualitativas]$Release_Date <- sub("\n", "", df[var_cualitativas]$Release_Date)
 df[var_cualitativas]$Open_GL <- as.factor(df[var_cualitativas]$Open_GL)
 df[var_cualitativas]$Shader <- as.factor(df[var_cualitativas]$Shader)
+df[var_cualitativas]$Direct_X <- as.factor(df[var_cualitativas]$Direct_X)
 df[var_cualitativas]
 ```
 
@@ -60,10 +62,7 @@ all <- c(var_cualitativas, var_numericas, var_binarias)
 df_selected <- df[all]
 df_selected[df_selected==""] <- NA
 df_clean <- na.omit(df_selected)
-df_clean
-dim(df_clean)
 summary(df_clean)
-df_selected
 ```
 ```{r}
 for (i in var_cualitativas){
