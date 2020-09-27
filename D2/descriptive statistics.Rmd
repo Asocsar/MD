@@ -13,7 +13,7 @@ Here you can write the introduction of your report and include some text that wi
 WARNING: data must have been properly declared before (factors, dates...)
 ```{r}
 setwd("C:/Users/danie/Desktop/MD/MD/D2")
-dd <- read.table("clean_table.csv",header=T, sep=",", dec=".")
+dd <- read.table("clean_table_numericas.csv",header=T, sep=",", dec=".")
 #dd<- read.csv("D:/karina/TFGs/GrauEstadistica/MarcPinar/data.csv", sep=";")
 
 dataset<-"GPUs"
