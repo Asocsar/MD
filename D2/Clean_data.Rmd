@@ -75,6 +75,7 @@ for (i in var_cualitativas){
 
 ```{r}
 write.csv(df_clean, "clean_table.csv", row.names = FALSE)
+write.csv(df_clean[var_numericas], "clean_table_numericas.csv", row.names = FALSE)
 ```
 
 
