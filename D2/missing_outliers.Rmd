@@ -100,6 +100,15 @@ for (i in var_numericas){
 }
 ```
 
+```{r}
+#Max Power 
+l <- which(df_selected$Max_Power <4)
+df[l, "Max_Power"] <- NA
+
+#L2_Cache
+l <-which(df_selected$L2_Cache == 0)
+df[l, "L2_Cache"] <- NA 
+```
 
 # imputar numericas
 ```{r}
