@@ -1,6 +1,6 @@
 #Row selection
 ```{r}
-setwd("C:/Users/danie/Desktop/MD/MD/D2") #set the working directory
+setwd("C:/Users/Daniel Cano/Desktop/MD/D2") #set the working directory
 df <- read.delim("All_GPUs.csv",sep = ',',header=T);
 names(df)
 var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate", "Release_Date")
@@ -11,6 +11,7 @@ set.seed(28061963)
 sam<-as.vector(sort(sample(1:nrow(df),2000)))
 df_final <- df[sam,vars]
 summary(df_final)
+df
 
 ```
 
@@ -35,7 +36,7 @@ df[var_numericas]$Memory_Speed <- as.numeric(df[var_numericas]$Memory_Speed)
 df[var_numericas]$Texture_Rate <- sub(" GTexel/s", "", df[var_numericas]$Texture_Rate)
 df[var_numericas]$Texture_Rate <- as.numeric(df[var_numericas]$Texture_Rate)
 df[var_numericas]$Release_Date <- sub("\n", "", df[var_numericas]$Release_Date)
-df[var_numericas]
+df[var_numericas]$Release_Date <- gsub(" ", "", df[var_numericas]$Release_Date)
 
 ```
 
@@ -45,8 +46,9 @@ df[var_cualitativas]$Memory_Bus <- sub(" Bit", "", df[var_cualitativas]$Memory_B
 df[var_cualitativas]$Direct_X <- sub("DX ", "", df[var_cualitativas]$Direct_X)
 df[var_cualitativas]$Open_GL <- as.factor(df[var_cualitativas]$Open_GL)
 df[var_cualitativas]$Shader <- as.factor(df[var_cualitativas]$Shader)
+df[var_cualitativas] <- gsub("*\\.[0]+", "", df[var_cualitativas]$Direct_X)
 df[var_cualitativas]$Direct_X <- as.factor(df[var_cualitativas]$Direct_X)
-df[var_cualitativas]
+
 ```
 
 
@@ -73,13 +75,23 @@ for (i in var_cualitativas){
 
 
 ```{r}
-write.csv(df_clean, "clean_table.csv", row.names = FALSE)
-write.csv(df_clean[var_numericas], "clean_table_numericas.csv", row.names = FALSE)
+write.csv(df_selected, "clean_table.csv", row.names = FALSE)
+write.csv(df_selected[var_numericas], "clean_table_numericas.csv", row.names = FALSE)
+```
+
+```{r}
+unique(df_selected$Architecture)
 ```
 
 
 ```{r}
 # Function to detect strange values
 unique(df[var_cualitativas]$Memory_Bus[grep("Bit", df[var_cualitativas]$Memory_Bus, invert=TRUE)])
+```
+
+
+```{r}
+sort(df_selected$L2_Cache, decreasing = TRUE)
+df_selected[df_selected$Architecture == "G92 (x2) " ,]
 ```
 
