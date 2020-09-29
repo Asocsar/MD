@@ -60,10 +60,6 @@ Decide if you need to declare some more factor or date
 
 ```{r}
 actives<-c(1:K)
-if (dataset=="Release_Date")
-  {dd[,3]<-as.Date(dd[,3], format="%d/%m/%y")
-   actives<-c(3:44)
-   }
 ```
 
 
