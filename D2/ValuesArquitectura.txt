@@ -1,0 +1,177 @@
+[1] Tesla G92b                      R600 XT                         R600 PRO                        RV630                          
+  [5] R700 RV790 XT                   R600 GT                         Pitcairn XT GL                  RV100                          
+  [9] NV28GL A2                       Fermi GF110                     Kepler GK110                    RV200                          
+ [13] GCN 1.1 Oland XT + Kaveri       Kepler GK104 x2                 Skylake GT3-E                   R360                           
+ [17] Fermi GF100                     NV25 A2                         NV28                            Haswell GT3                    
+ [21] NV18 A4                         Broadwell GT3-E                 NV17 A3                         Pascal GP102                   
+ [25] Kepler GK110-400-A1             Kepler GK110-430-B1 (x2)        Kepler GK110B                   Maxwell GM200-400-A1           
+ [29] Maxwell GM200-400-A1 (x2)       Kepler GK110-400-A1 (x2)        Pascal P100                     Kepler GK110-430-B1            
+ [33] NA                                Terrascale 2                    Terascale 3                     Terrascale 3                   
+ [37] R200                            RV360                           RV350                           R300                           
+ [41] RV280                           RV250                           GCN 2.0 Hawaii XT GL            Tahiti Pro                     
+ [45] Pitcairn LE                     Tahiti XT                       RV770 XT                        Pitcairn XT                    
+ [49] Cayman Pro GL                   GCN 1.1 Oland PRO               RV870                           Cayman LE GL                   
+ [53] Evergreen Juniper XT GL         RV730                           GCN 1.0 Tahiti PRO GL           Cypress XT                     
+ [57] Tahiti XT GL                    Tahiti LE                       Turks                           Kaveri Spectre                 
+ [61] GCN 1.0 Tahiti PRO              RV770                           RV670                           Kaveri                         
+ [65] GCN 1.1 Godavari-KV-A1          GCN 1.1 Kaveri-KV-A1            Kabini                          Richland                       
+ [69] Terascale 2 Thames PRO          Scrapper                        Trinity                         WinterPark                     
+ [73] RV610                           BeaverCreek                     RS740                           R700 XT                        
+ [77] R700 RV770 PRO                  RV770 PRO                       RV790 GT                        R700 RV790 LE                  
+ [81] R700 RV730 XT                   R700 RV740 PRO                  RV770 CE                        RV740 PRO                      
+ [85] R700 RV730 PRO                  R700 RV710                      R700 RV730PRO                   RS880                          
+ [89] RS880D                          Tesla G94b                      Tesla G96b                      R600 RV670 XT                  
+ [93] RV670 PRO                       Tesla G98                       RV635 PRO                       RV635                          
+ [97] RV620 PRO                       RV620                           RV620 LE                        RS780                          
+[101] RS780D                          RS760                           Broadwell GT3                   Haswell GT3e                   
+[105] Skylake GT1-U                   Cantiga                         Tonga                           GCN 1.2 Amethyst XT            
+[109] GCN 1.1 Neptune XT              Arrandale                       GCN 1.1 Neptune XT (x2)         Terascale 2 Loveland           
+[113] Terascale 2 Broadway XT (x2)    M96 XT                          Terascale 2 Broadway XT         Terascale 2 Broadway PRO       
+[117] Terascale 2 Broadway LE         Terascale 2 Madison LE          Terascale 2 Madison XT          Terascale 2 Madison LP         
+[121] Terascale 2 Park XT             M96                             M92                             Park XT                        
+[125] Terascale 2 Park PRO            Terascale 2 Park LP             Terascale 2 Madison PRO         GCN 1.1 Venus XT               
+[129] GCN 1.1 Venus PRO               GCN 1.1 Mars XTX                GCN 1.1 Venus LE                GCN 1.1 Mars XT                
+[133] GCN 1.1 Mars PRO                GCN 1.1 Mars LE                 GCN 1.1 Sun PRO                 GCN                            
+[137] Terascale 2 Blackcomb XT        Kalindi                         Terascale 2 Blackcomb PRO       Terascale 2 Granville PRO      
+[141] Terascale 2 Granville LP        Terascale 2 Granville XT        Terascale 2 Whistler XT         Terascale 2 Blackcomb XTX      
+[145] Terascale 2 Whistler PRO        Terascale 2 Whistler LE         Terascale 2 Capilano XT         Terascale 2 Whistler LP        
+[149] Terascale 2 Capilano PRO        Terascale 2 Seymour XT          Terascale 2 Seymour XTX         Terascale 2 Capilano LE        
+[153] Terascale 2 Seymour PRO         Terascale 2 Robson XT           Terascale 2 Robson PRO          Terascale 2 Seymour LE         
+[157] Terascale 2 Robson LE           Kalindi LP                      Zacate                          Loveland                       
+[161] GCN 1.0 Wimbledon PRO           GCN 1.0 Heathrow Pro            GCN 1.0 Heathrow XT             GCN 1.0 Chelsea XT             
+[165] GCN 1.0 Wimbledon XT            GCN 1.0 Wimbledon XT (x2)       GCN 1.0 Chelsea LE              Terascale 2 Thames XTX         
+[169] Terascale 2 Thames XT           GCN 1.0 Chelsea PRO             Terascale 2 Thames LP           Terascale 2 Thames LE          
+[173] Saturn XT                       GCN 1.1 Venus XTX               Venus XT                        GCN 1.1 Topaz XT               
+[177] GCN 1.1 Opal XT                 Jet PRO                         Jet LE                          GCN 1.1 Sun LE                 
+[181] GCN 1.1 Jet XT                  M66                             RS690M                          R520                           
+[185] RV570                           M64                             RV515                           GCN 1.1 Saturn PRO             
+[189] GCN 1.2 Strato PRO              RV530                           GCN 1.1 Saturn XT               GCN 1.0 Venus XTX              
+[193] GCN 1.0                     GCN 1.0 Venus PRO               GCN 1.1 Meso PRO                RV535                          
+[197] M62                             GCN 1.1 Exo XT                  GCN 1.1 Jet PRO                 RV370                          
+[201] RV380                           RV410                           Montara-GM                      Skylake GT2-U                  
+[205] Skylake GT2-H                   Haswell GT2                     Haswell GT1                     Sandy Bridge                   
+[209] Skylake GT2-Y                   Broadwell GT2                   Sandy Bridge GT1                Ivy Bridge                     
+[213] Calistoga                       Haswell                         Braswell GT1                    Bay Trail GT1                  
+[217] Kaby Lake                       Skylake GT2                     Ivy Bridge GT2                  PowerVR SGX 545                
+[221] Broadwater                      Pineview                        Cedar Trail                     GL40                           
+[225] R680                            G72GLM                          G84M                            G98M                           
+[229] Terascale 3 Trinity            Fermi GF108                     NV18M                           G94                            
+[233] G92 (x2)                        G94 (x2)                        G92                             G96                            
+[237] G84                             G98                             G86                             NV17M                          
+[241] MCP79MX                         GT216M                          NB9P-GLM2                       NV28M                          
+[245] G92M                            GT218M                          G86M                            G71GLM                         
+[249] GT215M                          G96M                            Kepler GK208                    G94M                           
+[253] RS200                           Kepler GK104                    Kepler GK107                    GF110GLM                       
+[257] Fermi GF106-N12P-Q3             GF104GLM                        GF108GLM                        Fermi GF119                    
+[261] G72M                            GCN 1.2 Carrizo                 Puma+ Carrizo-L                 Puma Mullins ML-A1             
+[265] Beema                           Puma+                           GCN 1.1                         Terascale 3GCN                
+[269] Terascale 3 Devastator (x2)     Devastator  Mars PRO           Terascale 2                     Devastator                     
+[273] RV710                           M86GL                           M66GL                           M56GL                          
+[277] Juniper XT                      Blackcomb XT                    M97GL                           Whistler XT                    
+[281] Redwood XT                      GCN 1.1 Saturn XT GL            Cape Verde PRO GL               M24GL                          
+[285] Caicos                          NV41M                           G71M                            G70M                           
+[289] Kepler GK104 (x2)               Fermi GF104-N12E-GTX-A1 (x2)    G94b                            Fermi GF114 (x2)               
+[293] Fermi GF116 (x2)                Fermi GF114                     Fermi GF106                     Fermi GF108-400-A1             
+[297] Fermi GF116                     Tesla G92-N10E-GTX              Tesla G92-N10E-GTX1-B1          Tesla G92-N10E-GT              
+[301] Tesla G92b (x2)                 Tesla GT215-N10E-GS             Tesla GT215-N10E-GE-A2          Pascal P104-200-A1             
+[305] Pascal P107                     Tesla GT216-N10P-GS             Pascal P102                     Tesla GT218-N10M-GS            
+[309] Tesla GT216-N10P-GE-A2          Pascal P106-400-A1              G96b                            Tesla MCP79MX                  
+[313] Tesla G96M C1                   MCP79XT                         Fermi GF104-N12E-GTX-A1         Fermi GF100-N11E-GTX-A3        
+[317] Fermi GF100-N11E-GTX-A3 (x2)    Fermi GF104-N11E-GT (x2)        Fermi GF104-N11E-GT             Fermi GF106-N11E-GE-A1         
+[321] Fermi GF106-N11E-GS-A1 (x2)     Fermi GF108-N11P-GT             Fermi GF108-N11P-GS-A1          Fermi GF106-N11E-GS-A1         
+[325] Pascal P104-400-A1              Fermi GF119-N12M-GS             Fermi GF108-N11P-GE-A1          Fermi GF108-N11P-GV            
+[329] Maxwell GM107                   Tesla GT218                     Maxwell GM107-N15P-GX-A1 (x2)   Maxwell GM108                  
+[333] GT215                           Fermi GF117-N15V-GM             GT216                           Tesla MCP89                    
+[337] Tesla GT218-N11M-GE1            Tesla GT218-N11M-LP1            Kepler GK104-N13E-GTX-A2        Kepler GK104-N13E-GSR-A2       
+[341] Kepler GK104-N13E-GTX2-A2       Maxwell GM107-N15P-GX-A1        Kepler GK106 (x2)               Kepler GK104-N13E-GR-A2        
+[345] Kepler GK107-N13E-GE-A2         Kepler GK107 (x2)               Kepler GK107-N13P-GT-W-A2       Fermi GF117                    
+[349] Kepler GK104-N14E-GTX-A2        Kepler GK106-N14E-GS-A1         Kepler GK106-N14E-GE-B-A1 (x2)  Kepler GK106-N14E-GL-A1 (x2)   
+[353] Kepler GK106-N14E-GE-B-A1       Kepler GK107-GT-755M (x2)       Kepler GK106-N14E-GL-A1         Kepler GK107-N14P-GT           
+[357] Kepler GK107-N14P-LP            Kepler GK107-GT-740M            Kepler GK107-GT-755M            Kepler GK208-GT-740M           
+[361] Fermi GF117-N14M-GE             Fermi GF117-N14M-GL             Maxwell GM204 (x2)              Maxwell GM204                  
+[365] Maxwell GM204-N16E-GX-A2        Maxwell GM204-N16E-GT-A2 (x2)   Maxwell GM204-N16E-GS (x2)      Maxwell GM107-N16P-GX-A1       
+[369] Maxwell GM204-N16E-GS           Maxwell GM107-N16P-GT           Maxwell GM108-N16S-GTR          Maxwell GM204-N16E             
+[373] Fermi GF119-B1                  Maxwell GM108-N16S-GMR          Maxwell GM108-N16S-GT-S         Maxwell GM108-N16V-GMR         
+[377] Maxwell GM108-N16S-GM           Kepler GK208-N16V-GM            Kepler GK107                   G73-N-B1                       
+[381] G73M                            NV43M                           NV44M                           C51M                           
+[385] Broadwell GT3e                  Clarkdale                       Eaglelake                       Vega 10 XT                     
+[389] Vega 10 XTX                     RS690C                          R480                            GCN 1.1 Versuvius XT           
+[393] GCN 1.1 Hawaii XT               GCN 1.2 Fiji XT                 GCN 1.2 Fiji XT (x2)            RS480                          
+[397] GCN 1.2 Fiji PRO                GCN 1.1 Grenada XT              GCN 1.1 Grenada XT (x2)         GCN 1.1 Grenada PRO            
+[401] GCN 1.1 Grenada PRO (x2)        GCN 1.2 Antigua XT              GCN 1.2 Antigua PRO             GCN 1.2 Antigua PRO (x2)       
+[405] GCN 1.2 Tonga PRO               GCN 1.0 Pitcairn PRO            GCN 1.0 Trinidad PRO (x2)       GCN 1.0 Trinidad XT            
+[409] GCN 1.0 Trinidad PRO            GCN 1.1 Tobago PRO              GCN 1.1 Tobago XT               GCN 1.1 Tobago PRO (x2)        
+[413] GCN 1.1 Oland XT                GCN 1.2 Capsaicin XT            GCN 1.1 Hawaii XT (x2)          GCN 1.1 Hawaii PRO             
+[417] GCN 1.1 Hawaii PRO (x2)         GCN 1.0 Tahiti XTL              GCN 1.1 Tahiti XTL (x2)         GCN 1.0 Tahiti PRO2            
+[421] GCN 1.1 Tahiti PRO2 (x2)        GCN 1.1 Curacao XT              GCN 1.1 Curacao XT (x2)         GCN 1.1 Curacao PRO            
+[425] GCN 1.1 Curacao PRO (x2)        GCN 1.0 Cape Verde PRX          GCN 1.0 Bonaire XT              Pitcairn PRO                   
+[429] GCN 1.1 Bonaire XTX             GCN 1.3 Greenland XT            GCN 1.3 Ellesmere XT            GCN 1.3 Polaris 10             
+[433] GCN 1.1 Bonaire XT              GCN 1.1 Bonaire XTX (x2)        GCN 1.1 Bonaire PRO             GCN 1.0 Cape Verde XT          
+[437] GCN 1.0 Cape Verde XT (x2)      GCN 1.0 Cape Verde PRO          GCN 1.3 Ellesmere XT (x2)       GCN 1.3 Ellesmere PRO          
+[441] GCN 1.1 Oland XT (x2)           GCN 1.3 Baffin XT               GCN 1.3 Baffin PRO              Terascale 2 Caicos XT          
+[445] Terascale 2 Caicos PRO-L        GCN 1.3 Polaris 20 XTX          R423                            Terascale Cedar PRO            
+[449] R420                            R430                            GCN 1.3 Polaris 20 XL           Polaris 10                     
+[453] RS482                           R580+                           R580                            RV570 - R580+                  
+[457] RV560                           RV516 XT                        RV516                           RV515 LE                       
+[461] Bearlake-B                      Springdale                      Brookdale                       Lakeport-G                     
+[465] Bearlake                        Skylake GT1                     Ivy Bridge Bay Trail           Haswell GT2-MB                 
+[469] Haswell GT1                    Sandy Bridge GT2                Alviso                          Lakeport                       
+[473] Skylake GT2-S0                  Skylake GT2-R0                  Haswell GT3e                   Haswell GT3                   
+[477] GCN 1.0 Malta                   GCN 1.0 Tahiti XT (x2)          Terascale 3 Antilles            Terascale 2 Cedar PRO          
+[481] GCN 1.0 Tahiti XT               GT200GL                         Fermi GF100 (x2)                MCP68S                         
+[485] G92 (x4)                        Maxwell GM204-200-A1            NV6                             Kepler GK107-301-A2            
+[489] D10U-20                         Fermi GF100-100-KD              GF108GL                         Fermi GF106-875-A1             
+[493] GT216GL                         Tesla G92-420-B1                Fermi GF100-850-A3              Tesla G80                      
+[497] Tesla G92-270-A2 (x2)           Tesla G92-270-A2                Tesla G92-420-A2                Tesla G94-300-A1               
+[501] Tesla G96C                      G94a                            G96ab                          MCP7A-U                        
+[505] G71                             G70                             C78                             G73                            
+[509] G72                             MCP76                           MCP68V                          NV44                           
+[513] GT218                           Tesla G92                       Tesla G80-100-K0-A2             Tesla G84                      
+[517] Tesla G86                       MCP78                           NV5                             NV4                            
+[521] Terascale 2 Antilles (x2)       NV44 A2                         NV34GL                          Terascale 3 Cayman XT          
+[525] Terascale 3 Cayman XT (x2)      Terascale 3 Cayman Pro          Cayman Pro                      Terascale 2 Barts XT           
+[529] Barts XT                        Terascale 2 Barts XT (x2)       Terascale 2 Barts Pro           Barts Pro                      
+[533] Terascale 2 Barts LE            Terascale 2 Juniper XT          Terascale 2 Juniper PRO         Terascale 2 Turks XT           
+[537] Terascale 2 Turks PRO-L         Terascale 2 Caicos PRO          Terascale 2 Turks PRO           G80GL                          
+[541] Terascale Cedar LE              G71GL                           G70GL                           GT218GL                        
+[545] G200GL                          G73 GL                          NV45GL                          NV41 GL                        
+[549] G84GL                           G84 GL                          NV41GL                          NV35GL                         
+[553] NV38GL                          NV30GL                          Hemlock XT                      Terascale 2 Cypress XT         
+[557] Evergreen Cypress XT            Terascale 2 Cypress PRO         GT200b GL                       Evergreen Cypress LE           
+[561] Evergreen Cypress PRO           Evergreen Juniper XT            Terascale 2 Redwood XT          Evergreen Juniper PRO          
+[565] Evergreen Redwood XT            Evergreen Redwood PRO           Evergreen Redwood LE            GCN 1.0 Tahiti XT2             
+[569] GCN 1.0 Tahiti PRO (x2)         GCN 1.0 Tahiti PRO2 (x2)        GCN 1.0 Tahiti PRO (x3)         GCN 1.0 Tahiti LE              
+[573] GCN 1.0 Tahiti LE (x2)          GCN 1.0 Pitcairn XT             GCN 1.0 Pitcairn XT (x2)        GCN 1.0 Pitcairn PRO (x2)      
+[577] GCN 1.0 Bonaire XT (x2)         GCN 1.0 Cape Verde PRO (x2)     GCN 1.0 Cape Verde LE           Turks XT                       
+[581] Redwood                         GCN 1.1 Tahiti PRO2             NV40NV41                       NV40NV45                      
+[585] NV38                            NV10                            NV35                            Fermi GF119-300-A1             
+[589] Tesla G200-400-B3 (x2)          Fermi GF100-375-A3 (x2)         NV20                            G92b                           
+[593] Kepler GK104-355-A2 (x2)        Kepler GK104-400-A2             Kepler GK104-355-A2             Maxwell GM204-400-A1           
+[597] Kepler GK104-400-A2 (x4)         Kepler GK104-400-A2 (x2)       Pascal P104-400-A1 (x2)         Pascal P106-300-A1             
+[601] Pascal                          Kepler GK104-325-A2             Kepler GK104-325-A2 (x2)        Kepler GK106-400-A1            
+[605] Kepler GK106-450-A1             Kepler GK106-400-A1 (x2)        Kepler GK104-300-KD-A2          Kepler GK104-200-KD-A2 (x2)    
+[609] Kepler GK104-300-KD-A2 (x2)     Kepler GK104-200-KD-A2 (x3)     Kepler GK107-450-A2             Kepler GK104-200-KD-A2         
+[613] Kepler GK106-240-A1             Kepler GK106-220-A1             Kepler GK106-220-A1 (x2)        Kepler GK107-300-A2            
+[617] Kepler GK208-400-A1             Kepler GK106                    Kepler GK208-301-A1             Fermi GF108-100-KB-A1          
+[621] Tesla GT200 B3 (x2)             Tesla G200-350-B3               Tesla G200-105-B3               Tesla G200-302-A2              
+[625] Tesla G200-103-B2               Tesla G92-428-B1                Tesla G200-100-A2               Tesla G200-103-A2              
+[629] Tesla G200-350-B3 (x3)          Tesla G94                       Tesla GT216-055-A3              Tesla GT215-450-A2             
+[633] Tesla G94-300-B1                Tesla GT218-200-B1              Tesla GT218-300-B1              Fermi GF100-375-A3             
+[637] Fermi GF100-375-A3 (x3)         Fermi GF100-275-A3 (x2)         Fermi GF100-275-A3              Fermi GF100-030-A3             
+[641] Fermi GF104-300-KB-A1           Fermi GF104-300-KB-A1 (x2)      Fermi GF106-250-KA-A1           Fermi GF104-300-KD-A1          
+[645] Fermi GF116-250-KA-A1           Fermi GF106-250-KB-A1           Fermi GF116-200-KA-A1           Fermi GF108-300-A1             
+[649] Fermi GF108-200-A1              Fermi GF110-351-A1              Fermi GF110-351-A1 (x2)         Fermi GF110-375-A1             
+[653] Fermi GF110-375-A1 (x2)         Fermi GF110-275-A1              Fermi GF110-275-A1 (x2)         Fermi GF114-325-A1             
+[657] Fermi GF114-400-A1              Fermi GF114-400-A1 (x2)         Fermi GF110-270-A1              Fermi GF114-200-KB-A1          
+[661] Fermi GF114-325-A1 (x2)         Fermi GF116-400-A1              Fermi GF116-400-A1 (x2)         Fermi GF116-400-KD-A1          
+[665] Maxwell GM204-400-A1 (x2)       Fermi GF119-200-A1              Maxwell GM200-310-A1            Maxwell GM200-310-A1 (x2)      
+[669] Maxwell GM204-400-A1 (x3)       Maxwell GM204-200-A1 (x2)       Maxwell GM206-300-A1            Maxwell GM204-200-KD           
+[673] Maxwell GM206-300-A1 (x2)       Kepler GK110-300-A1             Kepler GK110-300-A1 (x2)        Kepler GK110-425-B1            
+[677] Kepler GK110-425-B1 (x2)        Kepler GK110-301-B1             Maxwell GM206-250               Maxwell GM206-251-A1           
+[681] Kepler GK104-425-A2             Kepler GK104-425-A2 (x2)        Maxwell GM206-250 (x2)          Maxwell GM                  
+[685] Kepler GK104-225-A2             Maxwell GM107-300-A2            Maxwell GM107-400-A2            Kepler GK104-225-A2 (x2)       
+[689] Kepler GK107-425-A2             NV16                            NV11                            NV15                           
+[693] NV36                            NV31                            NV34B                           NV34                           
+[697] NV25                            NV17                            NV18                            NV40NV42                      
+[701] NV43                            NV45                            MCP61                           C51                            
+[705] MCP51                          
