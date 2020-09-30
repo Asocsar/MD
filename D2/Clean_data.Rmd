@@ -44,7 +44,7 @@ df[var_cualitativas]$Memory_Bus <- sub(" Bit", "", df[var_cualitativas]$Memory_B
 df[var_cualitativas]$Direct_X <- sub("DX ", "", df[var_cualitativas]$Direct_X)
 df[var_cualitativas]$Open_GL <- as.factor(df[var_cualitativas]$Open_GL)
 df[var_cualitativas]$Shader <- as.factor(df[var_cualitativas]$Shader)
-df[var_cualitativas] <- gsub("*\\.[0]+", "", df[var_cualitativas]$Direct_X)
+df[var_cualitativas]$Direct_X <- gsub("*\\.[0]+", "", df[var_cualitativas]$Direct_X)
 df[var_cualitativas]$Direct_X <- as.factor(df[var_cualitativas]$Direct_X)
 df[var_cualitativas]$Release_Date <- sub("\n", "", df[var_cualitativas]$Release_Date)
 df[var_cualitativas]$Release_Date <- gsub(" ", "", df[var_cualitativas]$Release_Date)
