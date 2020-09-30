@@ -12,7 +12,7 @@ rm(list=ls())
 
 #Row selection
 ```{r}
-setwd("C:/Users/edu11/Desktop/UNI/MD/MD-master/D2") #set the working directory
+setwd("C:/Users/Daniel Cano/Desktop/MD/D2") #set the working directory
 df <- read.delim("All_GPUs.csv",sep = ',',header=T);
 names(df)
 var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate")#, "Release_Date")
@@ -138,5 +138,7 @@ summary(impc$completeObs[,vars_cual_miss]) # After
 df_selected[,vars_cual_miss] <- impc$completeObs[,vars_cual_miss]
 ```
 
-
-
+```{r}
+write.csv(df_selected, "clean_table.csv", row.names = FALSE)
+write.csv(df_selected[var_numericas], "clean_table_numericas.csv", row.names = FALSE)
+```

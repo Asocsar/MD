@@ -70,24 +70,25 @@ Basic descriptive analysis for numerical variables
 listOfColors<-rainbow(39)
 
 par(ask=TRUE)
+cat <- c(6, 7, 5)
 
 for(k in actives){
   print(paste("variable ", k, ":", names(dd)[k] ))
-  if (!(is.numeric(dd[,k]) || class(dd[,k])=="Date")){ 
+  if (!(is.numeric(dd[,k]) || class(dd[,k])=="Date") || is.element(k, cat)){ 
     frecs<-table(as.factor(dd[,k]), useNA="ifany")
     proportions<-frecs/n
     #ojo, decidir si calcular porcentages con o sin missing values
     pie(frecs, cex=0.6, main=paste("Pie of", names(dd)[k]))
     barplot(frecs, las=3, cex.names=0.7, main=paste("Barplot of", names(dd)[k]), col=listOfColors)
-    print(paste("Number of modalities: ", length(frecs)))
-    print("Frequency table")
-    print(frecs)
-    print("Relative frequency table (proportions)")
-    print(proportions)
-    print("Frequency table sorted")
-    print(sort(frecs, decreasing=TRUE))
-    print("Relative frequency table (proportions) sorted")
-    print(sort(proportions, decreasing=TRUE))
+    # print(paste("Number of modalities: ", length(frecs)))
+    # print("Frequency table")
+    #print(frecs)
+    # print("Relative frequency table (proportions)")
+    #print(proportions)
+    #print("Frequency table sorted")
+    #print(sort(frecs, decreasing=TRUE))
+    #print("Relative frequency table (proportions) sorted")
+    #print(sort(proportions, decreasing=TRUE))
    }else{
      if(class(dd[,k])=="Date"){
        print(summary(dd[,k]))
