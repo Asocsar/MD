@@ -1,22 +1,28 @@
+#Clean workspace
+
+```{r}
+# Clear plots
+if(!is.null(dev.list())) dev.off()
+
+
+# Clean workspace
+rm(list=ls())
+```
+
+
 #Row selection
 ```{r}
-setwd("C:/Users/Daniel Cano/Desktop/MD/D2") #set the working directory
+path <- "path.txt"
+path <- readChar(path, file.info(path)$size)
+setwd(path) #set the working directory
 df <- read.delim("All_GPUs.csv",sep = ',',header=T);
-names(df)
 var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate")
 var_binarias <- c("Dedicated", "Notebook_GPU", "SLI_Crossfire");
 var_cualitativas <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Memory_Bus", "Name", "Resolution_WxH", "Release_Date")
 vars <- c(var_numericas, var_binarias, var_cualitativas)
-set.seed(28061963)
-sam<-as.vector(sort(sample(1:nrow(df),2000)))
-df_final <- df[sam,vars]
-summary(df_final)
 df
 
 ```
-
-
-
 
 
 ```{r}
@@ -63,34 +69,12 @@ all <- c(var_cualitativas, var_numericas, var_binarias)
 df_selected <- df[all]
 df_selected[df_selected==""] <- NA
 df_clean <- na.omit(df_selected)
-summary(df_clean)
 ```
-```{r}
-for (i in var_cualitativas){
-  print(i,)
-  print(sum(is.na(df_selected[i])),)
-}
-```
-
 
 ```{r}
 write.csv(df_selected, "clean_table.csv", row.names = FALSE)
 write.csv(df_selected[var_numericas], "clean_table_numericas.csv", row.names = FALSE)
 ```
 
-```{r}
-unique(df_selected$Architecture)
-```
 
-
-```{r}
-# Function to detect strange values
-unique(df[var_cualitativas]$Memory_Bus[grep("Bit", df[var_cualitativas]$Memory_Bus, invert=TRUE)])
-```
-
-
-```{r}
-sort(df_selected$L2_Cache, decreasing = TRUE)
-df_selected[df_selected$Architecture == "G92 (x2) " ,]
-```
 
