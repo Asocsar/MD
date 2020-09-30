@@ -46,8 +46,8 @@ df[var_cualitativas]$Open_GL <- as.factor(df[var_cualitativas]$Open_GL)
 df[var_cualitativas]$Shader <- as.factor(df[var_cualitativas]$Shader)
 df[var_cualitativas] <- gsub("*\\.[0]+", "", df[var_cualitativas]$Direct_X)
 df[var_cualitativas]$Direct_X <- as.factor(df[var_cualitativas]$Direct_X)
-df[var_cualitativas]$Release_Date <- sub("\n", "", df[var_numericas]$Release_Date)
-df[var_cualitativas]$Release_Date <- gsub(" ", "", df[var_numericas]$Release_Date)
+df[var_cualitativas]$Release_Date <- sub("\n", "", df[var_cualitativas]$Release_Date)
+df[var_cualitativas]$Release_Date <- gsub(" ", "", df[var_cualitativas]$Release_Date)
 ```
 
 
