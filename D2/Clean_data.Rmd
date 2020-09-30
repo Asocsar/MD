@@ -42,16 +42,24 @@ df[var_numericas]$Memory_Speed <- as.numeric(df[var_numericas]$Memory_Speed)
 df[var_numericas]$Texture_Rate <- sub(" GTexel/s", "", df[var_numericas]$Texture_Rate)
 df[var_numericas]$Texture_Rate <- as.numeric(df[var_numericas]$Texture_Rate)
 
+#Max Power 
+#l <- which(df[var_numericas]$Max_Power <4)
+#df[var_numericas][l, "Max_Power"] <- NA
+
+#L2_Cache
+#l <-which(df[var_numericas]$L2_Cache == 0)
+#df[var_numericas][l, "L2_Cache"] <- NA 
+
 ```
 
 
 ```{r}
 df[var_cualitativas]$Memory_Bus <- sub(" Bit", "", df[var_cualitativas]$Memory_Bus)
 df[var_cualitativas]$Direct_X <- sub("DX ", "", df[var_cualitativas]$Direct_X)
-df[var_cualitativas]$Open_GL <- as.factor(df[var_cualitativas]$Open_GL)
-df[var_cualitativas]$Shader <- as.factor(df[var_cualitativas]$Shader)
 df[var_cualitativas]$Direct_X <- gsub("*\\.[0]+", "", df[var_cualitativas]$Direct_X)
 df[var_cualitativas]$Direct_X <- as.factor(df[var_cualitativas]$Direct_X)
+df[var_cualitativas]$Open_GL <- as.factor(df[var_cualitativas]$Open_GL)
+df[var_cualitativas]$Shader <- as.factor(df[var_cualitativas]$Shader)
 df[var_cualitativas]$Release_Date <- sub("\n", "", df[var_cualitativas]$Release_Date)
 df[var_cualitativas]$Release_Date <- gsub(" ", "", df[var_cualitativas]$Release_Date)
 ```
@@ -72,8 +80,11 @@ df_clean <- na.omit(df_selected)
 ```
 
 ```{r}
+df_selected
 write.csv(df_selected, "clean_table.csv", row.names = FALSE)
 ```
 
 
-
+```{r}
+unique(df_selected$Release_Date)
+```
