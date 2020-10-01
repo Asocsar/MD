@@ -30,33 +30,15 @@ df[l, "Max_Power"] <- NA
 l <-which(df_selected$L2_Cache == 0)
 df[l, "L2_Cache"] <- NA 
 ```
-
-# imputar numericas
-```{r}
-summary(df_selected[,var_numericas])
-
-library (missMDA)
-
-impn<-imputePCA(df_selected[,var_numericas])
-
-summary(df_selected[,var_numericas]) # Before
-summary(impn$completeObs[,var_numericas]) # After
-
-df_selected[,var_numericas] <- impn$completeObs[,var_numericas]
-```
-
-#imputar cualitativas
+#cualitativas
 
 ```{r}
-summary(df_selected[,var_cualitativas])
-vars_cual_miss<-var_cualitativas[c(1:7,9)] #aqui poner las que tienen missings
-
-impc<-imputeMCA(df_selected[,vars_cual_miss])
-
-summary(df_selected[,vars_cual_miss]) # Before
-summary(impc$completeObs[,vars_cual_miss]) # After
-
-df_selected[,vars_cual_miss] <- impc$completeObs[,vars_cual_miss]
+for (i in var_cualitativas){
+  l <- which(is.na(df_selected[,i]))
+  df_selected[,i] <- as.character(df_selected[,i])
+  df_selected[l,i] <- paste('unknown',i,sep = "")
+  df_selected[,i] <- as.factor(df_selected[,i])
+}
 ```
 
 ```{r}
