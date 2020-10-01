@@ -2,6 +2,18 @@
 
 #Note: Take care to use "/" fo the directory file. "\" provides errors
 
+
+#Clean workspace
+
+```{r}
+# Clear plots
+if(!is.null(dev.list())) dev.off()
+
+
+# Clean workspace
+rm(list=ls())
+```
+
 ```{r}
 path <- "path.txt"
 path <- readChar(path, file.info(path)$size)
@@ -30,136 +42,89 @@ library(class)
 # For a single variable:
 # Build an artificial matrix with the full numerical variables
 
-dd_num <- data.frame(x1 = 1:dim(dd)[1])
+dd_num_orig <- data.frame(x1 = 1:dim(dd)[1])
 for (k in names(dd)) {
   if (is.numeric(dd[,k][0])) {
-    dd_num[k] <- dd[,k]
+    dd_num_orig[k] <- dd[,k]
     k
   }
 }
 
 
 drops <- c("x1", "Open_GL", "Shader")
-Core_Speed <- dd_num$Core_Speed
-dd_num <- dd_num[ , !(names(dd_num) %in% drops)]
+dd_num <- dd_num_orig[ , !(names(dd_num_orig) %in% drops)]
 
 
-dd_num <- dd_num[complete.cases(dd_num[, 3:dim(dd_num)[2]]),]
-dd_num <- dd_num[complete.cases(dd_num[, 1]),]
-sum(is.na(dd_num$Core_Speed))
+
+dd_num_nulls <- dd_num
+dd_num <- dd_num[complete.cases(dd_num[, 1:dim(dd_num)[2]]),]
 
 ```
 
-```{r}
-# dim(dd_num)
-# names(dd_num)
-# divide in rows that had missing incomes or not on the target variable to be imputed
-si_core_Speed <- dd_num[!is.na(Core_Speed),]
-# dim(si_core_Speed)
-no_core_Speed <- dd_num[is.na(Core_Speed),]
-# dim(no_core_Speed)
 
-knn.ing = knn(si_core_Speed,no_core_Speed,Core_Speed[!is.na(Core_Speed)])
-```
 
 ```{r}
-#CARE: neither aux1 nor aux2 can contain NAs
+elem_f <- c()
+elem_nf <- c()
 
-
-#CARE: knn.ing is generated as a factor. 
-#Be sure to retrieve the correct values
-
-IngresosOriginal<-Ingresos
-Ingresos[is.na(Ingresos)] <- as.numeric(levels(knn.ing))
-
-
-hist(IngresosOriginal)
-summary(IngresosOriginal)
-
-hist(Ingresos)
-summary(Ingresos)
-
-#For several Variables: 
-
-#built indexes of numerical variables that require inputation
-
-#Cargas.patrimoniales (12), patrimoni (11), Ingressos (10)
-uncompleteVars<-c(10,11,12)
-
-#better if you sort them by increasing number of missing values
-
-fullVariables<-c(2,4,5,9,13,14)
-aux<-dd[,fullVariables]
-dim(aux)
-names(aux)
-
-for (k in uncompleteVars){
-  aux1 <- aux[!is.na(dd[,k]),]
-  dim(aux1) 
-  aux2 <- aux[is.na(dd[,k]),]
-  dim(aux2)
-  
-  RefValues<- dd[!is.na(dd[,k]),k]
-  #Find nns for aux2
-  knn.values = knn(aux1,aux2,RefValues)   
-  
-  #CARE: neither aux1 nor aux2 can contain NAs
-  
-  
-  #CARE: knn.ing is generated as a factor. 
-  #Be sure to retrieve the correct values
-  
-  dd[is.na(dd[,k]),k] = as.numeric(as.character(knn.values))
-  fullVariables<-c(fullVariables, k)
-  aux<-dd[,fullVariables]
+for (k in 1:length(dd_num_nulls)) {
+  v <- dd_num_nulls[,k]
+  if (sum(is.na(v)) > 0) elem_nf <- c(k, elem_nf)
+  else elem_f <- c(k, elem_f)
 }
 
-dim(dd)
-summary(dd)
+nombres_tabla <- names(dd_num_nulls)
 
-#knowledge-based Inputation 
+dd_num_nulls_pre <- dd_num_nulls
 
-#MIMMI method?
+for (k in elem_nf){
+  faltan <- dd_num_nulls[is.na(dd_num_nulls[,k]), -k]
+  nombres <- c()
+  
+  for (n in elem_f) {
+    nombres <- c(nombres, nombres_tabla[n])
+  }
+  
+  faltan <- faltan[, nombres]
+  
+  
+  
+  nombres <- c(nombres, names(dd_num_nulls)[k])
+  tengo <- dd_num_nulls[!is.na(dd_num_nulls[,k]), nombres]
+  
+  tengo_datos <- tengo[, -k]
+  tengo_resultados <- tengo[, k]
+  
+  #Find nns for aux2
+  knn.values = knn(tengo_datos, faltan, tengo_resultados)
+  
+  dd_num_nulls[is.na(dd_num_nulls[,k]), k] = as.numeric(as.character(knn.values))
+  
+  
+  
+  elem_f<-c(elem_f, elem_nf[1])
+  if (length(elem_nf) > 1) {
+    elem_nf <- c(elem_nf[2]:elem_nf[length(elem_nf)])
+  }
+  
 
+}
 
-
-
-
-#check for outliers
-#how?
-
-
-#Transformations? In General avoid
-
-
-# Creation of new derived VARIABLES: “FEATURE EXTRACTION”
-
-# RATIO OF FINANCEMENT 
-
-Rati_fin = 100*Importe.solicitado/Precio.del.bien.financiado
-
-hist(Rati_fin)
-
-# CAPACITY TO SAVE
-
-Estalvi <- (Ingresos-Gastos-(Cargas.patrimoniales/100))/(Importe.solicitado/Plazo)
-
-hist(Estalvi)
-
-
-
-
-# SAVING THE TRANSFORMATIONS IN A INTERNAL R FILE
-
-save.image("credsco_bin")
-
-names(dd)
-dd[,15]<-Estalvi
-dd[,16]<-Rati_fin
-names(dd)[15]<-"Estalvi"
-colnames(dd)[16]<-"RatiFin"
+for (n in 1:length(names(dd_num_nulls))) {
+  hist(dd_num_nulls[,n], main=paste("After KNN ", names(dd_num_nulls)[n]) , xlab="Post")
+  hist(dd_num_nulls_pre[,n], main=paste("Before KNN " ,names(dd_num_nulls)[n]) )
+}
 
 
-#saving the dataframe in an external file
-write.table(dd, file = "credscoClean.csv", sep = ";", na = "NA", dec = ".", row.names = FALSE, col.names = TRUE)
+
+
 ```
+
+
+
+
+
+
+
+
+

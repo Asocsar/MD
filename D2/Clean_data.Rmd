@@ -30,6 +30,7 @@ df <- read.delim("All_GPUs.csv",sep = ',',header=T);
 df[var_numericas]$Max_Power <- sub(" Watts", "", df[var_numericas]$Max_Power)
 df[var_numericas]$L2_Cache <- sub("KB", "", df[var_numericas]$L2_Cache)
 df[var_numericas]$L2_Cache <- as.numeric(df[var_numericas]$L2_Cache)
+df$L2_Cache[df$L2_Cache == 0] <- NA
 df[var_numericas]$Max_Power <- as.numeric(df[var_numericas]$Max_Power)
 df[var_numericas]$Core_Speed <- sub(" MHz", "", df[var_numericas]$Core_Speed)
 df$Core_Speed <- as.numeric(as.character(df$Core_Speed))
@@ -51,6 +52,9 @@ df[var_numericas]$Texture_Rate <- as.numeric(df[var_numericas]$Texture_Rate)
 #df[var_numericas][l, "L2_Cache"] <- NA 
 
 ```
+
+
+
 
 
 ```{r}
@@ -81,10 +85,23 @@ df_clean <- na.omit(df_selected)
 
 ```{r}
 df_selected
+df_selected <- df_selected[complete.cases(df_selected[, "Memory_Speed" ] ), ]
+df_selected <- df_selected[complete.cases(df_selected[, "Memory_Bandwidth"] ), ]
+df_selected <- df_selected[complete.cases(df_selected[, "Memory" ] ), ]
+df_selected <- df_selected[complete.cases(df_selected[, "TMUs" ] ), ]
+df_selected <- df_selected[complete.cases(df_selected[, "Texture_Rate" ] ), ]
+df_selected
 write.csv(df_selected, "clean_table.csv", row.names = FALSE)
 ```
 
 
 ```{r}
-unique(df_selected$Release_Date)
+
+
+for (k in var_numericas) {
+  l <- sum(is.na(df_selected[var_numericas][,k]))
+  print(k)
+  print(l)
+}
+dim(df_selected)
 ```
