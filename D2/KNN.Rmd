@@ -43,10 +43,9 @@ library(class)
 # Build an artificial matrix with the full numerical variables
 
 dd_num_orig <- data.frame(x1 = 1:dim(dd)[1])
-for (k in names(dd)) {
-  if (is.numeric(dd[,k][0])) {
-    dd_num_orig[k] <- dd[,k]
-    k
+for (J in names(dd)) {
+  if (is.numeric(dd[,J][0])) {
+    dd_num_orig[J] <- dd[,J]
   }
 }
 
@@ -61,38 +60,47 @@ dd_num <- dd_num[complete.cases(dd_num[, 1:dim(dd_num)[2]]),]
 
 ```
 
+```{r}
+dd_num_nulls[is.na(dd_num_nulls[,6]), -6]
+```
 
 
 ```{r}
 elem_f <- c()
 elem_nf <- c()
 
+nombres_tabla <- names(dd_num_nulls)
+
 for (k in 1:length(dd_num_nulls)) {
   v <- dd_num_nulls[,k]
-  if (sum(is.na(v)) > 0) elem_nf <- c(k, elem_nf)
-  else elem_f <- c(k, elem_f)
+  if (sum(is.na(v)) > 0) elem_nf <- c(nombres_tabla[k], elem_nf)
+  else elem_f <- c(nombres_tabla[k], elem_f)
 }
 
-nombres_tabla <- names(dd_num_nulls)
 
 dd_num_nulls_pre <- dd_num_nulls
 
 for (k in elem_nf){
-  faltan <- dd_num_nulls[is.na(dd_num_nulls[,k]), -k]
+  #faltan <- dd_num_nulls[is.na(dd_num_nulls[,k]), -k]
+  #k<- "Memory_Bandwidth"
+  faltan <- dd_num_nulls[is.na(dd_num_nulls[,k]),]
+  faltan <- faltan[,!(names(faltan) %in% k)]
   nombres <- c()
   
   for (n in elem_f) {
-    nombres <- c(nombres, nombres_tabla[n])
+    #nombres <- c(nombres, nombres_tabla[n])
+    nombres <- c(nombres, n)
   }
   
   faltan <- faltan[, nombres]
   
   
   
-  nombres <- c(nombres, names(dd_num_nulls)[k])
+  nombres <- c(nombres, k)
   tengo <- dd_num_nulls[!is.na(dd_num_nulls[,k]), nombres]
   
-  tengo_datos <- tengo[, -k]
+  #tengo_datos <- tengo[, -k]
+  tengo_datos <- tengo[, !(names(tengo) %in% k)]
   tengo_resultados <- tengo[, k]
   
   #Find nns for aux2
@@ -104,7 +112,9 @@ for (k in elem_nf){
   
   elem_f<-c(elem_f, elem_nf[1])
   if (length(elem_nf) > 1) {
-    elem_nf <- c(elem_nf[2]:elem_nf[length(elem_nf)])
+    #elem_nf <- c(elem_nf[2]:elem_nf[length(elem_nf)])
+    long <- length(elem_nf)
+    elem_nf <- c(elem_nf[2:long])
   }
   
 

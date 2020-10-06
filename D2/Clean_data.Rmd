@@ -86,8 +86,8 @@ df_clean <- na.omit(df_selected)
 ```{r}
 df_selected
 df_selected <- df_selected[complete.cases(df_selected[, "Memory_Speed" ] ), ]
-df_selected <- df_selected[complete.cases(df_selected[, "Memory_Bandwidth"] ), ]
-df_selected <- df_selected[complete.cases(df_selected[, "Memory" ] ), ]
+# df_selected <- df_selected[complete.cases(df_selected[, "Memory_Bandwidth"] ), ]
+# df_selected <- df_selected[complete.cases(df_selected[, "Memory" ] ), ]
 df_selected <- df_selected[complete.cases(df_selected[, "TMUs" ] ), ]
 df_selected <- df_selected[complete.cases(df_selected[, "Texture_Rate" ] ), ]
 df_selected
