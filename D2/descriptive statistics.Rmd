@@ -12,7 +12,9 @@ Here you can write the introduction of your report and include some text that wi
 
 WARNING: data must have been properly declared before (factors, dates...)
 ```{r}
-setwd("C:/Users/Daniel Cano/Desktop/MD/D2") #set the working directory
+path <- "path.txt"
+path <- readChar(path, file.info(path)$size)
+setwd(path) 
 dd <- read.table("clean_table.csv",header=T, sep=",", dec=".")
 #dd<- read.csv("D:/karina/TFGs/GrauEstadistica/MarcPinar/data.csv", sep=";")
 
