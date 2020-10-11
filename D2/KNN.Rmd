@@ -60,10 +60,6 @@ dd_num <- dd_num[complete.cases(dd_num[, 1:dim(dd_num)[2]]),]
 
 ```
 
-```{r}
-dd_num_nulls[is.na(dd_num_nulls[,6]), -6]
-```
-
 
 ```{r}
 elem_f <- c()
@@ -82,7 +78,6 @@ dd_num_nulls_pre <- dd_num_nulls
 
 for (k in elem_nf){
   #faltan <- dd_num_nulls[is.na(dd_num_nulls[,k]), -k]
-  #k<- "Memory_Bandwidth"
   faltan <- dd_num_nulls[is.na(dd_num_nulls[,k]),]
   faltan <- faltan[,!(names(faltan) %in% k)]
   nombres <- c()
@@ -125,7 +120,7 @@ for (n in 1:length(names(dd_num_nulls))) {
   hist(dd_num_nulls_pre[,n], main=paste("Before KNN " ,names(dd_num_nulls)[n]) )
 }
 
-
+write.csv(df_selected, "clean_table.csv", row.names = FALSE)
 
 
 ```

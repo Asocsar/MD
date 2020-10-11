@@ -12,7 +12,9 @@ Here you can write the introduction of your report and include some text that wi
 
 WARNING: data must have been properly declared before (factors, dates...)
 ```{r}
-setwd("C:/Users/Daniel Cano/Desktop/MD/D2") #set the working directory
+path <- "path.txt"
+path <- readChar(path, file.info(path)$size)
+setwd(path) #set the working directory
 dd <- read.table("clean_table.csv",header=T, sep=",", dec=".")
 #dd<- read.csv("D:/karina/TFGs/GrauEstadistica/MarcPinar/data.csv", sep=";")
 
@@ -80,15 +82,6 @@ for(k in actives){
     #ojo, decidir si calcular porcentages con o sin missing values
     pie(frecs, cex=0.6, main=paste("Pie of", names(dd)[k]))
     barplot(frecs, las=3, cex.names=0.7, main=paste("Barplot of", names(dd)[k]), col=listOfColors)
-    # print(paste("Number of modalities: ", length(frecs)))
-    # print("Frequency table")
-    #print(frecs)
-    # print("Relative frequency table (proportions)")
-    #print(proportions)
-    #print("Frequency table sorted")
-    #print(sort(frecs, decreasing=TRUE))
-    #print("Relative frequency table (proportions) sorted")
-    #print(sort(proportions, decreasing=TRUE))
    }else{
      if(class(dd[,k])=="Date"){
        print(summary(dd[,k]))
@@ -106,10 +99,5 @@ for(k in actives){
    }
 }
 par(ask=FALSE)
-
-#per exportar figures d'R per programa
-#dev.off()
-#png(file=mypath,width = 950, height = 800, units = "px")
-#dev.off()
 
 ```
