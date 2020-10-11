@@ -16,14 +16,26 @@ path <- "path.txt"
 path <- readChar(path, file.info(path)$size)
 setwd(path) #set the working directory
 df <- read.delim("All_GPUs.csv",sep = ',',header=T);
-var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate")
-var_binarias <- c("Dedicated", "Notebook_GPU", "SLI_Crossfire");
-var_cualitativas <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Name", "Resolution_WxH", "Release_Date", "Memory_Bus")
-vars <- c(var_numericas, var_binarias, var_cualitativas)
 df
 
 ```
 
+```{r}
+rows <- dim(df)[1]
+for (k in names(df)) {
+  l <- (sum(is.na(df[,k])) / rows)*100
+  print(k)
+  print(l)
+}
+```
+
+
+```{r}
+var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate")
+var_binarias <- c("Dedicated", "Notebook_GPU", "SLI_Crossfire");
+var_cualitativas <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Name", "Resolution_WxH", "Release_Date", "Memory_Bus")
+vars <- c(var_numericas, var_binarias, var_cualitativas)
+```
 
 ```{r}
 df <- read.delim("All_GPUs.csv",sep = ',',header=T);
@@ -93,21 +105,21 @@ calcQ <- function(x) {
 ```
 
 ```{r}
-for (i in all){
-    type <- df_selected[!is.na(df_selected[,i]),][1,i]
-    if (is.numeric(type)) {
-      Q <- calcQ(df_selected[,i])
-      l <- which((df_selected$Core_Speed>Q$souts) || (df_selected$Core_Speed<Q$souti) || (df_selected$Core_Speed<0))
-      df[l, i] <- NA
-    }
-    if (is.factor(type) || typeof(type) == "character" && !is.numeric(type)) {
-        l <- which(is.na(df_selected[,i]))
-        length(l)
-        df_selected[,i] <- as.character(df_selected[,i])
-        df_selected[l,i] <- paste('unknown',i,sep = "")
-        df_selected[,i] <- as.factor(df_selected[,i])
-    }
-}
+for (i in all){ 
+    type <- df_selected[!is.na(df_selected[,i]),][1,i] 
+    if (is.numeric(type)) { 
+      Q <- calcQ(df_selected[,i]) 
+      l <- which((df_selected$Core_Speed>Q$souts) || (df_selected$Core_Speed<Q$souti) || (df_selected$Core_Speed<0)) 
+      df[l, i] <- NA 
+    } 
+    if (is.factor(type) || typeof(type) == "character" && !is.numeric(type)) { 
+        l <- which(is.na(df_selected[,i])) 
+        length(l) 
+        df_selected[,i] <- as.character(df_selected[,i]) 
+        df_selected[l,i] <- paste('unknown',i,sep = "") 
+        df_selected[,i] <- as.factor(df_selected[,i]) 
+    } 
+} 
 df_selected
 ```
 
@@ -136,7 +148,7 @@ write.csv(df_selected, "clean_table.csv", row.names = FALSE)
 
 
 ```{r}
-for (k in all) {
+for (k in var_numericas) {
   l <- sum(is.na(df_selected[,k]))
   print(k)
   print(l)

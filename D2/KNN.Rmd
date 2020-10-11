@@ -120,7 +120,13 @@ for (n in 1:length(names(dd_num_nulls))) {
   hist(dd_num_nulls_pre[,n], main=paste("Before KNN " ,names(dd_num_nulls)[n]) )
 }
 
-write.csv(df_selected, "clean_table.csv", row.names = FALSE)
+for (k in names(dd)) {
+  if (!(k %in% names(dd_num_nulls))) {
+    dd_num_nulls[k] = dd[,k]
+  }
+}
+
+write.csv(dd_num_nulls, "clean_table_knn.csv", row.names = FALSE)
 
 
 ```
