@@ -94,11 +94,11 @@ for (k in elem_nf){
   nombres <- c(nombres, k)
   tengo <- dd_num_nulls[!is.na(dd_num_nulls[,k]), nombres]
   
-  #tengo_datos <- tengo[, -k]
+  
   tengo_datos <- tengo[, !(names(tengo) %in% k)]
   tengo_resultados <- tengo[, k]
   
-  #Find nns for aux2
+  
   knn.values = knn(tengo_datos, faltan, tengo_resultados)
   
   dd_num_nulls[is.na(dd_num_nulls[,k]), k] = as.numeric(as.character(knn.values))

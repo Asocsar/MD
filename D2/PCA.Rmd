@@ -1,0 +1,25 @@
+```{r}
+# Clear plots
+if(!is.null(dev.list())) dev.off()
+
+
+# Clean workspace
+rm(list=ls())
+```
+
+```{r}
+path <- "path.txt"
+path <- readChar(path, file.info(path)$size)
+setwd(path) #set the working directory
+
+dd <- read.table("clean_table_knn.csv",header=T, sep=",");
+
+dd
+```
+
+
+
+
+```{r}
+
+```
