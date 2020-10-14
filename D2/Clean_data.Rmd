@@ -14,6 +14,7 @@ rm(list=ls())
 ```{r}
 path <- "path.txt"
 path <- readChar(path, file.info(path)$size)
+path <- gsub("[\r\n]", "", path)
 setwd(path) #set the working directory
 df <- read.delim("All_GPUs.csv",sep = ',',header=T);
 df
@@ -155,3 +156,5 @@ for (k in var_numericas) {
 }
 dim(df_selected)
 ```
+
+
