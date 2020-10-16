@@ -12,6 +12,7 @@ Here you can write the introduction of your report and include some text that wi
 
 WARNING: data must have been properly declared before (factors, dates...)
 ```{r}
+path <- "path.txt"
 path <- readChar(path, file.info(path)$size)
 path <- gsub("[\r\n]", "", path)
 setwd(path) #set the working directory
