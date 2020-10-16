@@ -24,7 +24,7 @@ dd
 library(FactoMineR)
 
 var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate")
-var_qualitative <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Name", "Resolution_WxH",  "Memory_Bus")
+var_qualitative <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Resolution_WxH",  "Memory_Bus")
 
 
 
@@ -36,6 +36,7 @@ for(k in names(dd[var_qualitative])) {
 
 dd_pca_num <- dd[var_numericas]
 dd_pca_cua <- dd[var_qualitative]
+dd
 
 
 
@@ -46,6 +47,7 @@ for (k in names(dd_pca_cua)) {
 }
 
 dd_pca_cua
+dd_pca_num
 
 
 
@@ -63,16 +65,34 @@ pca.cual <- PCA(dd_pca_cua, ncp = 3)
 ```{r}
 pca.num <- PCA(dd_pca_num, ncp = 3)
 ```
-
+```{r}
+pca.num$eig
+```
 
 
 ```{r}
 barplot(pca.num$eig[9:16]/100)
 ```
+```{r}
+barplot(pca.num$eig[17:24])
+abline(h=80, col="orange")
+```
+
+```{r}
+# all <- merge(dd_pca_cua, dd_pca_num)
+# pca.all <- PCA(all, ncp = 3)
+```
+
 
 
 ```{r}
-all <- merge(dd_pca_cua, dd_pca_num)
-all
-pca.all <- PCA(all, ncp = 3)
+install.packages("ggfortify", "ggplot")
+library(ggfortify)
+library(ggplot2)
+```
+
+
+```{r}
+pca_res <- prcomp(dd_pca_num, scale. = TRUE)
+autoplot(pca_res, data=dd, colour = 'Memory_Bus', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE)
 ```

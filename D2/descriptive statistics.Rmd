@@ -99,7 +99,7 @@ for(k in actives){
        hist(dd[,k],breaks="weeks")
      }else{
        hist(dd[,k], main=paste("Histogram of", names(dd)[k]))
-       boxplot(dd[,k], horizontal=TRUE, main=paste("Boxplot of", names    (dd)[k]))
+       boxplot(dd[,k], horizontal=TRUE, main=paste("Boxplot of", names(dd)[k]))
        print("Extended Summary Statistics")
        print(summary(dd[,k]))
        print(paste("sd: ", sd(dd[,k], na.rm=TRUE)))
