@@ -65,17 +65,22 @@ pca.cual <- PCA(dd_pca_cua, ncp = 3)
 ```{r}
 pca.num <- PCA(dd_pca_num, ncp = 3)
 ```
-
+```{r}
+pca.num$eig
+```
 
 
 ```{r}
 barplot(pca.num$eig[9:16]/100)
 ```
-
+```{r}
+barplot(pca.num$eig[17:24])
+abline(h=80, col="orange")
+```
 
 ```{r}
-all <- merge(dd_pca_cua, dd_pca_num)
-pca.all <- PCA(all, ncp = 3)
+# all <- merge(dd_pca_cua, dd_pca_num)
+# pca.all <- PCA(all, ncp = 3)
 ```
 
 
@@ -84,7 +89,10 @@ pca.all <- PCA(all, ncp = 3)
 install.packages("ggfortify", "ggplot")
 library(ggfortify)
 library(ggplot2)
+```
 
+
+```{r}
 pca_res <- prcomp(dd_pca_num, scale. = TRUE)
-autoplot(pca_res, data=dd, colour = 'Memory_Type', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE)
+autoplot(pca_res, data=dd, colour = 'Memory_Bus', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE)
 ```

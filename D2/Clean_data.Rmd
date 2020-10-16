@@ -148,10 +148,9 @@ write.csv(df_selected, "clean_table.csv", row.names = FALSE)
 
 
 ```{r}
-for (k in var_numericas) {
+for (k in var_cualitativas) {
   l <- sum(is.na(df_selected[,k]))
   print(k)
   print(l)
 }
-dim(df_selected)
 ```
