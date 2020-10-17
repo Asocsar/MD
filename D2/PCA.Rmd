@@ -24,22 +24,24 @@ dd
 library(FactoMineR)
 
 var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Speed", "TMUs", "Texture_Rate", "Memory_Bandwidth")
-var_qualitative <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Resolution_WxH",  "Memory_Bus")
+var_qualitative <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Resolution_WxH",  "Memory_Bus", "group_core")
 var_qualitative_ind <- c()
 
 
 
 
 dd_pca_num <- dd[var_numericas]
-dd_pca_cua <- dd[var_qualitative]
 
 
-dd_pca_cua
 dd_pca_num
 
 cols.dont.want <- c("Release_Date", "Dedicated", "Notebook_GPU", "SLI_Crossfire", "Name") # if you want to remove multiple columns
 
 dd <- dd[, ! names(dd) %in% cols.dont.want, drop = F]
+
+
+dd$group_core = cut(dd$Core_Speed, c(0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500))
+dd
 
 for(k in names(dd[var_qualitative])) {
   if (is.numeric(dd[1,k])) {
@@ -48,7 +50,6 @@ for(k in names(dd[var_qualitative])) {
   var_qualitative_ind <- c(var_qualitative_ind, grep(k, names(dd)))
 }
 
-dd
 
 
 ```
@@ -65,7 +66,7 @@ library(ggplot2)
 
 ```{r}
 pca_res <- prcomp(dd_pca_num, scale. = TRUE)
-autoplot(pca_res, data=dd, colour = 'Memory_Type', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+autoplot(pca_res, data=dd, colour = 'group_core', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
 ```
 
 ```{r}

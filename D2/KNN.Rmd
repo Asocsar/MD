@@ -131,7 +131,7 @@ for (k in exponential) {
 }
 
 for (k in escalar) {
-    dd_num_nulls[, k] <- scale(dd_num_nulls[, k])
+    #dd_num_nulls[, k] <- scale(dd_num_nulls[, k])
 }
 
 
