@@ -73,7 +73,8 @@ for (k in 1:length(dd_num_nulls)) {
   else elem_f <- c(nombres_tabla[k], elem_f)
 }
 
-exponential <- c("Memory_Bus", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "TMUs", "Texture_Rate")
+escalar <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Speed", "TMUs", "Texture_Rate", "Memory_Bandwidth")
+exponential <- c("L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "TMUs", "Texture_Rate")
 
 dd_num_nulls_pre <- dd_num_nulls
 
@@ -119,28 +120,34 @@ for (k in elem_nf){
 }
 
 
-for (k in names(dd_num_nulls)) {
-  if (k %in% exponential) {
+for (k in names(dd)) {
+  if (!(k %in% names(dd_num_nulls))) {
+    dd_num_nulls[k] = dd[,k]
+  }
+}
+
+for (k in exponential) {
     dd_num_nulls[, k] <- log(dd_num_nulls[, k])
-    }
+}
+
+for (k in escalar) {
     dd_num_nulls[, k] <- scale(dd_num_nulls[, k])
 }
 
 
 
 
-for (n in 1:length(names(dd_num_nulls))) {
-  hist(dd_num_nulls[,n], main=paste("After KNN ", names(dd_num_nulls)[n]) , xlab="Post")
-  hist(dd_num_nulls_pre[,n], main=paste("Before KNN " ,names(dd_num_nulls)[n]) )
-}
 
 
+transformed <- names(dd_num_nulls)
 
-for (k in names(dd)) {
-  if (!(k %in% names(dd_num_nulls))) {
-    dd_num_nulls[k] = dd[,k]
+for (n in transformed) {
+  if (is.numeric(dd_num_nulls[1,n])) {
+    hist(dd_num_nulls[,n], main=paste("After KNN ", n) , xlab="Post")
+    hist(dd_num_nulls_pre[,n], main=paste("Before KNN " , n) )
   }
 }
+
 
 write.csv(dd_num_nulls, "clean_table_knn.csv", row.names = FALSE)
 

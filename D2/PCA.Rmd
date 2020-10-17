@@ -23,70 +23,41 @@ dd
 ```{r}
 library(FactoMineR)
 
-var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate")
+var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Speed", "TMUs", "Texture_Rate", "Memory_Bandwidth")
 var_qualitative <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Resolution_WxH",  "Memory_Bus")
+var_qualitative_ind <- c()
 
-
-
-for(k in names(dd[var_qualitative])) {
-  dd[,k] <- as.factor(dd[,k])
-}
 
 
 
 dd_pca_num <- dd[var_numericas]
 dd_pca_cua <- dd[var_qualitative]
-dd
 
-
-
-for (k in names(dd_pca_cua)) {
-  if (is.factor(dd_pca_cua[1,k])) {
-    dd_pca_cua[,k] <- as.numeric(factor(dd_pca_cua[,k], levels = unique(dd_pca_cua[,k])))
-  }
-}
 
 dd_pca_cua
 dd_pca_num
 
+cols.dont.want <- c("Release_Date", "Dedicated", "Notebook_GPU", "SLI_Crossfire", "Name") # if you want to remove multiple columns
 
+dd <- dd[, ! names(dd) %in% cols.dont.want, drop = F]
 
+for(k in names(dd[var_qualitative])) {
+  if (is.numeric(dd[1,k])) {
+    dd[,k] <- as.character(dd[,k])
+  }
+  var_qualitative_ind <- c(var_qualitative_ind, grep(k, names(dd)))
+}
 
+dd
 
 
 ```
 
 
-```{r}
-pca.cual <- PCA(dd_pca_cua, ncp = 3)
-```
 
 
 ```{r}
-pca.num <- PCA(dd_pca_num, ncp = 3)
-```
-```{r}
-pca.num$eig
-```
-
-
-```{r}
-barplot(pca.num$eig[9:16]/100)
-```
-```{r}
-barplot(pca.num$eig[17:24])
-abline(h=80, col="orange")
-```
-
-```{r}
-# all <- merge(dd_pca_cua, dd_pca_num)
-# pca.all <- PCA(all, ncp = 3)
-```
-
-
-
-```{r}
-install.packages("ggfortify", "ggplot")
+#install.packages("ggfortify", "ggplot")
 library(ggfortify)
 library(ggplot2)
 ```
@@ -94,5 +65,23 @@ library(ggplot2)
 
 ```{r}
 pca_res <- prcomp(dd_pca_num, scale. = TRUE)
-autoplot(pca_res, data=dd, colour = 'Memory_Bus', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE)
+autoplot(pca_res, data=dd, colour = 'Memory_Type', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+```
+
+```{r}
+pca.num <- PCA(dd, quali.sup = var_qualitative_ind, graph = FALSE)
+plot(pca.num, label = "none" , habillage = "Memory_Type", invisible = "quali", xlim = c(-7.5, 5.0), ylim= c(3,-3))
+```
+
+
+
+```{r}
+pca.num$eig
+```
+
+
+```{r}
+barplot(pca.num$eig[9:16]/100)
+barplot(pca.num$eig[17:24])
+abline(h=80, col="orange")
 ```
