@@ -66,11 +66,12 @@ library(ggplot2)
 
 ```{r}
 pca_res <- prcomp(dd_pca_num, scale. = TRUE)
-autoplot(pca_res, data=dd, colour = 'group_core', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+autoplot(pca_res, data=dd, colour = 'Memory_Bus', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+autoplot(pca_res, data=dd, colour = 'Memory_Type', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
 ```
 
 ```{r}
-pca.num <- PCA(dd, quali.sup = var_qualitative_ind, graph = FALSE)
+pca.num <- PCA(dd, quali.sup = var_qualitative_ind, graph = TRUE)
 plot(pca.num, label = "none" , habillage = "Memory_Type", invisible = "quali", xlim = c(-7.5, 5.0), ylim= c(3,-3))
 ```
 
