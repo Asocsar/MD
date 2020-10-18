@@ -24,7 +24,7 @@ dd
 library(FactoMineR)
 
 var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Speed", "TMUs", "Texture_Rate", "Memory_Bandwidth")
-var_qualitative <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Resolution_WxH",  "Memory_Bus", "group_core")
+var_qualitative <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Resolution_WxH",  "Memory_Bus", "group_cSpeed", "group_mSpeed", "group_mPower")
 var_qualitative_ind <- c()
 
 
@@ -39,8 +39,6 @@ cols.dont.want <- c("Release_Date", "Dedicated", "Notebook_GPU", "SLI_Crossfire"
 
 dd <- dd[, ! names(dd) %in% cols.dont.want, drop = F]
 
-
-dd$group_core = cut(dd$Core_Speed, c(0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500))
 dd
 
 for(k in names(dd[var_qualitative])) {
@@ -66,8 +64,67 @@ library(ggplot2)
 
 ```{r}
 pca_res <- prcomp(dd_pca_num, scale. = TRUE)
-autoplot(pca_res, data=dd, colour = 'Memory_Bus', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+
+
+# 1. Open jpeg file
+jpeg("group_mSpeed.jpg", width = 750, height = 500)
+# 2. Create the plot
+autoplot(pca_res, data=dd, colour = 'group_mSpeed', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+# 3. Close the file
+dev.off()
+
+
+# 1. Open jpeg file
+jpeg("group_cSpeed.jpg", width = 750, height = 500)
+# 2. Create the plot
+autoplot(pca_res, data=dd, colour = 'group_cSpeed', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+# 3. Close the file
+dev.off()
+
+# 1. Open jpeg file
+jpeg("Memory_Type.jpg", width = 750, height = 500)
+# 2. Create the plot
 autoplot(pca_res, data=dd, colour = 'Memory_Type', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+# 3. Close the file
+dev.off()
+
+# 1. Open jpeg file
+jpeg("Memory_Bus.jpg", width = 750, height = 500)
+# 2. Create the plot
+autoplot(pca_res, data=dd, colour = 'Memory_Bus', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+# 3. Close the file
+dev.off()
+
+# 1. Open jpeg file
+jpeg("Direct_X.jpg", width = 750, height = 500)
+# 2. Create the plot
+autoplot(pca_res, data=dd, colour = 'Direct_X', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+# 3. Close the file
+dev.off()
+
+# 1. Open jpeg file
+jpeg("Manufacturer.jpg", width = 750, height = 500)
+# 2. Create the plot
+autoplot(pca_res, data=dd, colour = 'Manufacturer', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+# 3. Close the file
+dev.off()
+
+# 1. Open jpeg file
+jpeg("group_mPower.jpg", width = 750, height = 500)
+# 2. Create the plot
+autoplot(pca_res, data=dd, colour = 'group_mPower', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+# 3. Close the file
+dev.off()
+
+
+autoplot(pca_res, data=dd, colour = 'group_mSpeed', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)+stat_ellipse(geom="polygon", aes(fill = dd$Memory_Type), 
+
+                 alpha = 0.3, 
+
+                 show.legend = TRUE, 
+
+                 level = 0.95)
+
 ```
 
 ```{r}
