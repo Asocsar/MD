@@ -27,7 +27,6 @@ for (i in var_binarias){
 df
 
 
-attach(df)
 
 ```
 
@@ -42,7 +41,9 @@ d  <- dist(aux)
 h1 <- hclust(d,method="ward.D")  # NOTICE THE COST
 plot(h1)
 
+```
 
+```{r}
 dissimMatrix <- daisy(df, metric = "gower", stand=TRUE)
 
 distMatrix<-dissimMatrix^2
@@ -75,7 +76,7 @@ table(c5)
 table(c1,c5)
 
 
-cdg <- aggregate(as.data.frame(df),list(c1),mean)
+cdg <- aggregate(as.data.frame(aux),list(c1),mean)
 cdg
 
 plot(cdg[,1], cdg[,7])
