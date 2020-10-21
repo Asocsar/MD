@@ -18,7 +18,7 @@ rm(list=ls())
 path <- "path.txt"
 path <- readChar(path, file.info(path)$size)
 setwd(path) #set the working directory
-setwd("C:/Users/Daniel Cano/Desktop/MD/D2") #set the working directory
+# setwd("C:/Users/Daniel Cano/Desktop/MD/D2") #set the working directory
 
 dd <- read.table("clean_table.csv",header=T, sep=",");
 
@@ -126,6 +126,15 @@ for (k in names(dd)) {
   }
 }
 
+dd_num_nulls$group_mBand = cut(as.integer(dd_num_nulls$Memory_Bandwidth), c(0,16,32,64,128,256,512,768,1024))
+dd_num_nulls$group_l2 = cut(dd_num_nulls$L2_Cache, c(0,128,256,512,768,1024,2048,4069))
+dd_num_nulls$group_mem = cut(dd_num_nulls$Memory, c(0,256,512,1024,2048,4069,8192,16384))
+dd_num_nulls$group_TMUs = cut(dd_num_nulls$TMUs, c(0,25,50,75,100,125,150,175,200,225,250,275,300,450))
+dd_num_nulls$group_mPower = cut(dd_num_nulls$Max_Power, c(0,250,400,550,800))
+dd_num_nulls$group_cSpeed = cut(dd_num_nulls$Core_Speed, c(0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500))
+dd_num_nulls$group_mSpeed = cut(dd_num_nulls$Memory_Speed, c(0, 64, 128, 256, 512, 1024, 2048, 4096))
+
+
 for (k in exponential) {
     dd_num_nulls[, k] <- log(dd_num_nulls[, k])
 }
@@ -157,10 +166,10 @@ write.csv(dd_num_nulls, "clean_table_knn.csv", row.names = FALSE)
 ```{r}
 hist(log(dd_num_nulls$L2_Cache))
 hist(scale(dd_num_nulls$Memory_Speed))
-hist(scale(log(dd_num_nulls$Memory_Bandwidth)))
+#hist(scale(log(dd_num_nulls$Memory_Bandwidth)))
 ```
 ```{r}
-install.packages("EnvStats")
+#install.packages("EnvStats")
 library(EnvStats)
 r <- eexp(dd_num_nulls$Memory_Bandwidth)[3]$parameters
 r
