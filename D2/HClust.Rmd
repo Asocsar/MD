@@ -84,8 +84,9 @@ plot(cdg[,1], cdg[,7])
 
 # LETS SEE THE PARTITION VISUALLY
 
+```{r}
 
-plot(Edad,Estalvi,col=c1,main="Clustering of credit data in 3 classes")
+plot(df["Core_Speed"],df["L2_Cache"],col=c1,main="Clustering of credit data in 3 classes")
 legend("topright",c("class1","class2","class3"),pch=1,col=c(1:3))
 
 
@@ -102,6 +103,8 @@ plot(Patrimonio, Antiguedad.Trabajo,col=c1,main="Clustering of credit data in 3 
 legend("topright",c("class1","class2","class3"),pch=1,col=c(1:3), cex=0.6)
 
 pairs(dcon[,1:7], col=c1)
+
+```
 
 #plot(FI[,1],FI[,2],col=c1,main="Clustering of credit data in 3 classes")
 #legend("topleft",c("c1","c2","c3"),pch=1,col=c(1:3))
