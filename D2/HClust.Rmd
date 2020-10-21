@@ -34,24 +34,16 @@ df
 ```{r}
 library('cluster')
 numericalVariables <- lapply(df, is.numeric)
-aux<-df[,unlist(numericalVariables)]
-aux
+dfNum<-df[,unlist(numericalVariables)]
+dfNum
 
-d  <- dist(aux)
+d  <- dist(dfNum)
 h1 <- hclust(d,method="ward.D")  # NOTICE THE COST
 plot(h1)
 
 ```
 
-```{r}
-dissimMatrix <- daisy(df, metric = "gower", stand=TRUE)
 
-distMatrix<-dissimMatrix^2
-
-h2 <- hclust(distMatrix,method="ward.D")  # NOTICE THE COST
-plot(h2)
-
-```
 
 # BUT WE ONLY NEED WHERE THERE ARE THE LEAPS OF THE HEIGHT
 
@@ -62,21 +54,9 @@ nc = 3
 
 c1 <- cutree(h1,nc)
 
-c1[1:20]
-
-nc = 4
-
-c5 <- cutree(h1,nc)
-
-c5[1:20]
-
-
 table(c1)
-table(c5)
-table(c1,c5)
 
-
-cdg <- aggregate(as.data.frame(aux),list(c1),mean)
+cdg <- aggregate(as.data.frame(dfNum),list(c1),mean)
 cdg
 
 plot(cdg[,1], cdg[,7])
@@ -86,57 +66,35 @@ plot(cdg[,1], cdg[,7])
 
 ```{r}
 
-plot(df["Core_Speed"],df["L2_Cache"],col=c1,main="Clustering of credit data in 3 classes")
+plot(df$Memory,df$Memory_Bandwidth,col=c1,main="Clustering of credit data in 3 classes")
 legend("topright",c("class1","class2","class3"),pch=1,col=c(1:3))
 
+#plot(RatiFin,Estalvi)
+#plot(RatiFin,Estalvi,col=c1,main="Clustering of credit data in 3 classes")
+#legend("topright",c("class1","class2","class3"),pch=1,col=c(1:3), cex=0.6)
 
 
-plot(RatiFin,Estalvi)
-plot(RatiFin,Estalvi,col=c1,main="Clustering of credit data in 3 classes")
-legend("topright",c("class1","class2","class3"),pch=1,col=c(1:3), cex=0.6)
-
-plot(Antiguedad.Trabajo,Estalvi,col=c1,main="Clustering of credit data in 3 classes")
-legend("topright",c("class1","class2","class3"),pch=1,col=c(1:3), cex=0.6)
-plot(Patrimonio, Ingresos,col=c1,main="Clustering of credit data in 3 classes")
-legend("topright",c("class1","class2","class3"),pch=1,col=c(1:3), cex=0.6)
-plot(Patrimonio, Antiguedad.Trabajo,col=c1,main="Clustering of credit data in 3 classes")
-legend("topright",c("class1","class2","class3"),pch=1,col=c(1:3), cex=0.6)
-
-pairs(dcon[,1:7], col=c1)
+df
+pairs(df[,1:9], col=c1)
 
 ```
 
-#plot(FI[,1],FI[,2],col=c1,main="Clustering of credit data in 3 classes")
-#legend("topleft",c("c1","c2","c3"),pch=1,col=c(1:3))
-
-# LETS SEE THE QUALITY OF THE HIERARCHICAL PARTITION
-
-
-
-Bss <- sum(rowSums(cdg^2)*as.numeric(table(c1)))
-
-Ib4 <- 100*Bss/Tss
-Ib4
+```{r}
+# move to Gower mixed distance to deal 
+# simoultaneously with numerical and qualitative data
+borrar <- c("Release_Date", "Name")
+df2 <- df[ , !(names(df) %in% borrar)]
 
 
-#move to Gower mixed distance to deal 
-#simoultaneously with numerical and qualitative data
-
-library(cluster)
-
-#dissimilarity matrix
-
-actives<-c(2:16)
-dissimMatrix <- daisy(dd[,actives], metric = "gower", stand=TRUE)
+dissimMatrix <- daisy(df2, metric = "gower", stand=TRUE)
 
 distMatrix<-dissimMatrix^2
 
-h1 <- hclust(distMatrix,method="ward.D")  # NOTICE THE COST
-#versions noves "ward.D" i abans de plot: par(mar=rep(2,4)) si se quejara de los margenes del plot
+h2 <- hclust(distMatrix,method="ward.D")  # NOTICE THE COST
+plot(h2)
 
-plot(h1)
 
-c2 <- cutree(h1,4)
+c2 <- cutree(h2,2)
 
 #class sizes 
 table(c2)
@@ -144,30 +102,9 @@ table(c2)
 #comparing with other partitions
 table(c1,c2)
 
+df2
+pairs(df2[,10:16], col=c2)
 
-names(dd)
-#ratiFin
-boxplot(dd[,16]~c2, horizontal=TRUE)
+```
 
-#plazo
-boxplot(dd[,4]~c2, horizontal=TRUE)
 
-#gastos
-boxplot(dd[,9]~c2, horizontal=TRUE)
-
-pairs(dcon[,1:7], col=c2)
-
-plot(RatiFin,Estalvi,col=c2,main="Clustering of credit data in 3 classes")
-legend("topright",levels(c2),pch=1,col=c(1:4), cex=0.6)
-
-cdg <- aggregate(as.data.frame(dcon),list(c2),mean)
-cdg
-
-plot(Edad, Gastos, col= c2)
-points(cdg[,4],cdg[,5],pch=16,col="orange")
-text(cdg[,4],cdg[,5], labels=cdg[,1], pos=2, font=2, cex=0.7, col="orange")
-
-potencials<-c(3,4,6,7,10,11)
-pairs(dcon[,potencials],col=c2)
-
-#Profiling plots
