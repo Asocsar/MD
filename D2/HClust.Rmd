@@ -50,7 +50,7 @@ plot(h1)
 # WHERE ARE THER THE LEAPS? WHERE WILL YOU CUT THE DENDREOGRAM?, HOW MANY CLASSES WILL YOU OBTAIN?
 
 ```{r}
-nc = 3
+nc = 2
 
 c1 <- cutree(h1,nc)
 
@@ -94,7 +94,7 @@ h2 <- hclust(distMatrix,method="ward.D")  # NOTICE THE COST
 plot(h2)
 
 
-c2 <- cutree(h2,2)
+c2 <- cutree(h2,4)
 
 #class sizes 
 table(c2)
@@ -103,7 +103,7 @@ table(c2)
 table(c1,c2)
 
 df2
-pairs(df2[,10:16], col=c2)
+pairs(df2[,8:12], col=c2)
 
 ```
 
