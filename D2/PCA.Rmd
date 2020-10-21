@@ -117,13 +117,14 @@ autoplot(pca_res, data=dd, colour = 'group_mPower', loadings=TRUE, loadings.labe
 dev.off()
 
 
-autoplot(pca_res, data=dd, colour = 'group_mSpeed', loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)+stat_ellipse(geom="polygon", aes(fill = dd$Memory_Type), 
-
-                 alpha = 0.3, 
-
-                 show.legend = TRUE, 
-
-                 level = 0.95)
+autoplot(pca_res, data=dd, colour = "Memory_Type", loadings=TRUE, loadings.label.size = 3, loadings.label = TRUE, scale = FALSE)
+#+stat_ellipse(geom="polygon", aes(fill = dd$Memory_Type), 
+#
+#                 alpha = 0.3, 
+#
+#                 show.legend = TRUE, 
+#
+#                 level = 0.95)
 
 ```
 
@@ -143,4 +144,5 @@ pca.num$eig
 barplot(pca.num$eig[9:16]/100)
 barplot(pca.num$eig[17:24])
 abline(h=80, col="orange")
+abline(h=90, col="orange")
 ```
