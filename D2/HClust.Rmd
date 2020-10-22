@@ -1,0 +1,65 @@
+#Retrieve the data saved AFTER the profiling practice...... this means data already cleaned
+
+```{r}
+# install.packages('cluster')
+path <- "path.txt"
+path <- readChar(path, file.info(path)$size)
+path <- gsub("[\r\n]", "", path)
+setwd(path) #set the working directory
+df <- read.delim("clean_table_knn.csv",sep = ',',header=T);
+df
+
+borrar <- c("group_mPower","group_cSpeed", "group_mSpeed")
+df <- df[ , !(names(df) %in% borrar)]
+df
+
+var_binarias <- c("Dedicated", "Notebook_GPU", "SLI_Crossfire")
+var_cualitativas <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Name", "Resolution_WxH", "Release_Date", "Memory_Bus")
+
+
+for (i in var_cualitativas){ 
+    df[,i] <- as.factor(df[,i])
+}
+
+for (i in var_binarias){ 
+    df[,i] <- as.factor(df[,i]) 
+}
+df
+
+
+
+```
+
+
+
+```{r}
+# move to Gower mixed distance to deal 
+# simoultaneously with numerical and qualitative data
+if (!require('dendextend')) install.packages('dendextend'); library('dendextend')
+library('cluster')
+borrar <- c("Release_Date", "Name")
+df2 <- df[ , !(names(df) %in% borrar)]
+
+
+dissimMatrix <- daisy(df2, metric = "gower", stand=TRUE)
+
+distMatrix<-dissimMatrix^2
+
+dend <- as.dendrogram(hclust(distMatrix,method="ward.D"))
+
+d1=color_branches(dend,k=4)
+
+plot(d1)
+
+
+c2 <- cutree(dend,4)
+
+#class sizes 
+table(c2)
+
+df2
+pairs(df2[,8:16], col=c2)
+
+```
+
+
