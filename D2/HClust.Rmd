@@ -35,7 +35,7 @@ df
 ```{r}
 # move to Gower mixed distance to deal 
 # simoultaneously with numerical and qualitative data
-
+if (!require('dendextend')) install.packages('dendextend'); library('dendextend')
 library('cluster')
 borrar <- c("Release_Date", "Name")
 df2 <- df[ , !(names(df) %in% borrar)]
@@ -45,18 +45,20 @@ dissimMatrix <- daisy(df2, metric = "gower", stand=TRUE)
 
 distMatrix<-dissimMatrix^2
 
-h2 <- hclust(distMatrix,method="ward.D")  # NOTICE THE COST
-plot(h2)
+dend <- as.dendrogram(hclust(distMatrix,method="ward.D"))
+
+d1=color_branches(dend,k=4)
+
+plot(d1)
 
 
-c2 <- cutree(h2,4)
+c2 <- cutree(dend,4)
 
 #class sizes 
 table(c2)
 
-
 df2
-pairs(df2[,7:12], col=c2)
+pairs(df2[,8:16], col=c2)
 
 ```
 
