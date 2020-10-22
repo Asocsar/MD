@@ -35,6 +35,8 @@ df
 ```{r}
 # move to Gower mixed distance to deal 
 # simoultaneously with numerical and qualitative data
+
+library('cluster')
 borrar <- c("Release_Date", "Name")
 df2 <- df[ , !(names(df) %in% borrar)]
 
@@ -52,8 +54,6 @@ c2 <- cutree(h2,4)
 #class sizes 
 table(c2)
 
-#comparing with other partitions
-table(c1,c2)
 
 df2
 pairs(df2[,7:12], col=c2)
