@@ -1,0 +1,72 @@
+```{r}
+# Clear plots
+if(!is.null(dev.list())) dev.off()
+
+
+# Clean workspace
+rm(list=ls())
+```
+
+```{r}
+path <- "path.txt"
+path <- readChar(path, file.info(path)$size)
+path <- gsub("[\r\n]", "", path)
+setwd(path) #set the working directory
+df <- read.delim("All_GPUs.csv",sep = ',',header=T);
+df
+
+```
+
+## Hierarical clustering
+
+En aquest apartat aplicarem la classificació jeràrquica de clustering.
+```{r}
+
+#d <- dist(as.matrix(dd))   # find distance matrix 
+#hc <- hclust(d)
+#plot(hc)
+
+res.hcpc <- HCPC(dd, nb.clust = 0, order =TRUE)
+res.hcpc <- HCPC(pca.num, nb.clust = 0, order =TRUE)
+
+
+# A PARTIR DE AQUÍ ABAJO NO SE SI SIRVE
+
+# Executem la comanda per a poder saber quants clusters necessitem i veiem que necessitem 5
+
+res.hcpc <- HCPC(res.pca, nb.clust = 5, order =TRUE)
+
+# Goodness of fit: BetweenSS/TotalSS
+(res.hcpc$call$t$within[1]- res.hcpc$call$t$within[3])/res.hcpc$call$t$within[1]
+
+### Interprete the results of clustering ###
+names(res.hcpc)
+
+### data.clust ### 
+### The original data with a supplementary row containing the partition ###
+summary(res.hcpc$data.clust)
+colnames(res.hcpc$data.clust)
+
+### Counts of individuals in each cluster ###
+summary(res.hcpc$data.clust$clust)
+### desc.var ###
+### A. The description of the clusters by the variables ###
+names(res.hcpc$desc.var)
+
+### desc.var$test.chi2 ###
+### A.1. The categorical variables which characterizes the clusters ###
+res.hcpc$desc.var$test.chi2
+
+### desc.var$category ###
+### A.2. The description of each cluster by the categories ##
+res.hcpc$desc.var$category
+
+### desc.var$quanti.var ###
+`### A.3. The quantitative variables which characterizes the clusters ###
+res.hcpc$desc.var$quanti.var
+
+### desc.var$quanti ###
+### A.4. The description of each cluster by the quantitative variables ###
+res.hcpc$desc.var$quanti`
+
+```
