@@ -34,11 +34,10 @@ borrar <- c("Release_Date", "Name")
 dd <- dd[ , !(names(dd) %in% borrar)]
 
 
+```
 
-attach(dd)
- 
- 
- 
+
+```{r}
 #Calcula els valor test de la variable Xnum per totes les modalitats del factor P
 ValorTestXnum <- function(Xnum,P){
   #freq dis of fac
