@@ -15,11 +15,8 @@ path <- "path.txt"
 path <- readChar(path, file.info(path)$size)
 path <- gsub("[\r\n]", "", path)
 setwd(path) #set the working directory
+path
 df <- read.delim("clean_table_knn.csv",sep = ',',header=T);
-df
-
-borrar <- c("group_mPower","group_cSpeed", "group_mSpeed")
-df <- df[ , !(names(df) %in% borrar)]
 df
 
 var_binarias <- c("Dedicated", "Notebook_GPU", "SLI_Crossfire")
@@ -35,6 +32,9 @@ for (i in var_binarias){
 }
 df
 
+borrar <- c("group_mPower","group_cSpeed", "group_mSpeed", "group_mBand", "group_l2", "group_mem", "group_TMUs","Release_Date", "Name")
+df <- df[ , !(names(df) %in% borrar)]
+df
 
 
 ```
@@ -68,7 +68,7 @@ c2 <- cutree(dend,4)
 table(c2)
 
 df2
-pairs(df2[,8:16], col=c2)
+pairs(df2[,1:10], col=c2)
 
 ```
 

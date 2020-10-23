@@ -18,7 +18,7 @@
 #    Q <- calcQ(df_selected[,i])
 #   l <- which((df_selected$Core_Speed>Q$souts) || (df_selected$Core_Speed<Q$souti) || (df_selected$Core_Speed<0))
 #    df[l, i] <- NA
-}
+#}
 ```
 
 ```{r}
@@ -43,5 +43,4 @@ for (i in var_cualitativas){
 
 ```{r}
 write.csv(df_selected, "clean_table.csv", row.names = FALSE)
-write.csv(df_selected[var_numericas], "clean_table_numericas.csv", row.names = FALSE)
 ```

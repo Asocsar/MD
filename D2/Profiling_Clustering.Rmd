@@ -1,6 +1,8 @@
 ---
 title: "script"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 ---
 ```{r}
 # Clear plots
@@ -92,11 +94,12 @@ library(cluster)
 #dissimilarity matrix
 #do not include in actives the identifier variables nor the potential response variable
 actives<-c(1:19)
+
 dissimMatrix <- daisy(dd[,actives], metric = "gower", stand=TRUE)
  
 distMatrix<-dissimMatrix^2
  
-h1 <- hclust(distMatrix,method="ward.D")  # NOTICE THE COST
+h1 <- as.dendrogram(hclust(distMatrix,method="ward.D"))  # NOTICE THE COST
 #versions noves "ward.D" i abans de plot: par(mar=rep(2,4)) si se quejara de los margenes del plot
 plot(h1)
  
