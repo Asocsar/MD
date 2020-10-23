@@ -1,6 +1,15 @@
 #Retrieve the data saved AFTER the profiling practice...... this means data already cleaned
 
 ```{r}
+# Clear plots
+if(!is.null(dev.list())) dev.off()
+
+
+# Clean workspace
+rm(list=ls())
+```
+
+```{r}
 # install.packages('cluster')
 path <- "path.txt"
 path <- readChar(path, file.info(path)$size)
@@ -35,8 +44,9 @@ df
 ```{r}
 # move to Gower mixed distance to deal 
 # simoultaneously with numerical and qualitative data
-borrar <- c("Release_Date", "Name")
+borrar <- c("Release_Date", "Name", "group_l2", "group_mem", "group_TMUs", "group_mBand")
 df2 <- df[ , !(names(df) %in% borrar)]
+
 
 
 dissimMatrix <- daisy(df2, metric = "gower", stand=TRUE)

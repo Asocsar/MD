@@ -2,7 +2,14 @@
 title: "script"
 output: html_document
 ---
+```{r}
+# Clear plots
+if(!is.null(dev.list())) dev.off()
 
+
+# Clean workspace
+rm(list=ls())
+```
 
 ```{r}
 # 
@@ -32,7 +39,7 @@ for (i in var_binarias){
 
 borrar <- c("Release_Date", "Name")
 dd <- dd[ , !(names(dd) %in% borrar)]
-
+dd
 
 ```
 
@@ -84,15 +91,14 @@ library(cluster)
  
 #dissimilarity matrix
 #do not include in actives the identifier variables nor the potential response variable
- 
-actives<-c(2:16)
+actives<-c(1:19)
 dissimMatrix <- daisy(dd[,actives], metric = "gower", stand=TRUE)
  
 distMatrix<-dissimMatrix^2
  
-h1 <- hclust(distMatrix,method="ward.D2")  # NOTICE THE COST
+h1 <- hclust(distMatrix,method="ward.D")  # NOTICE THE COST
 #versions noves "ward.D" i abans de plot: par(mar=rep(2,4)) si se quejara de los margenes del plot
-
+plot(h1)
  
 k<-4
  
@@ -202,12 +208,16 @@ for(k in 1:K){
     }
   }
 }#endfor
- 
+
+```
+
+```{r}
+
 #descriptors de les classes més significatius. Afegir info qualits
 for (c in 1:length(levels(as.factor(P)))) {
   if(!is.na(levels(as.factor(P))[c])){
     print(paste("P.values per class:",levels(as.factor(P))[c]));
-    print(sort(pvalk[c,]), digits=3) 
+    print(pvalk[c,], digits=3) 
   }
 }
  

@@ -21,7 +21,7 @@ setwd(path) #set the working directory
 # setwd("C:/Users/Daniel Cano/Desktop/MD/D2") #set the working directory
 
 dd <- read.table("clean_table.csv",header=T, sep=",");
-
+dd$Memory_Bus <- as.character(dd$Memory_Bus)
 dd
 ```
 
@@ -140,7 +140,7 @@ for (k in exponential) {
 }
 
 for (k in escalar) {
-    #dd_num_nulls[, k] <- scale(dd_num_nulls[, k])
+  # dd_num_nulls[, k] <- scale(dd_num_nulls[, k])
 }
 
 
@@ -159,6 +159,7 @@ for (n in transformed) {
 
 
 write.csv(dd_num_nulls, "clean_table_knn.csv", row.names = FALSE)
+dd_num_nulls
 
 
 ```
