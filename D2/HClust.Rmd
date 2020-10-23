@@ -1,6 +1,15 @@
 #Retrieve the data saved AFTER the profiling practice...... this means data already cleaned
 
 ```{r}
+# Clear plots
+if(!is.null(dev.list())) dev.off()
+
+
+# Clean workspace
+rm(list=ls())
+```
+
+```{r}
 # install.packages('cluster')
 path <- "path.txt"
 path <- readChar(path, file.info(path)$size)
@@ -39,6 +48,7 @@ if (!require('dendextend')) install.packages('dendextend'); library('dendextend'
 library('cluster')
 borrar <- c("Release_Date", "Name")
 df2 <- df[ , !(names(df) %in% borrar)]
+
 
 
 dissimMatrix <- daisy(df2, metric = "gower", stand=TRUE)
