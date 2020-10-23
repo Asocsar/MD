@@ -24,7 +24,7 @@ dd
 library(FactoMineR)
 
 var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Speed", "TMUs", "Texture_Rate", "Memory_Bandwidth")
-var_qualitative <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Resolution_WxH",  "Memory_Bus", "group_cSpeed", "group_mSpeed", "group_mPower","group_TMUs", "group_l2", "group_mem")
+var_qualitative <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Resolution_WxH",  "Memory_Bus", "group_cSpeed", "group_mSpeed", "group_mPower","group_TMUs", "group_l2", "group_mem", "group_mBand")
 var_qualitative_ind <- c()
 
 
@@ -68,7 +68,7 @@ pca_res <- prcomp(dd_pca_num, scale. = TRUE)
 ##########################COMPARATION BETWEEN CORE SPEED AND MAX POWER##################################
 jpeg("coreSpeed&maxPower.jpg", width = 750, height = 500)
 autoplot(pca_res, data=dd, colour = 'group_cSpeed', scale = FALSE) +
-  stat_ellipse(geom="polygon", aes(fill = group_mPower), alpha = 0.3, show.legend = TRUE, level = 0.95)
+  stat_ellipse(geom="polygon", aes(fill = group_mPower), alpha = 0.15, show.legend = TRUE, level = 0.95)
 dev.off()
 ########################################################################################################
 
@@ -80,31 +80,41 @@ dev.off()
 ########################################################################################################
 
 #######################COMPARATION BETWEEN MEMORY BUS AND MEMORY BANDWITH###############################
-jpeg("coreSpeed&maxPower.jpg", width = 750, height = 500)
-autoplot(pca_res, data=dd, colour = 'group_mem', scale = FALSE) +
-  stat_ellipse(geom="polygon", aes(fill = dd$Memory_Bandwidth), alpha = 0.3, show.legend = TRUE, level = 0.95)
+jpeg("memBus&memBand.jpg", width = 750, height = 500)
+autoplot(pca_res, data=dd, colour = 'Memory_Bus', scale = FALSE) +
+  stat_ellipse(geom="polygon", aes(fill = group_mBand), alpha = 0.15, show.legend = TRUE, level = 0.95)
 dev.off()
 ########################################################################################################
 
 ####################COMPARATION BETWEEN MEMORY TYPE AND MEMORY BANDWITH#################################
-jpeg("coreSpeed&maxPower.jpg", width = 750, height = 500)
-autoplot(pca_res, data=dd, colour = 'group_mPower', scale = FALSE) +
-  stat_ellipse(geom="polygon", aes(fill = group_cSpeed), alpha = 0.3, show.legend = TRUE, level = 0.95)
+jpeg("memType&memBand.jpg", width = 750, height = 500)
+autoplot(pca_res, data=dd, colour = 'Memory_Type', scale = FALSE) +
+  stat_ellipse(geom="polygon", aes(fill = group_mBand), alpha = 0.15, show.legend = TRUE, level = 0.95)
 dev.off()
 ########################################################################################################
 
 ####################COMPARATION BETWEEN MEMORY SPEED AND AND MEMORY BANDWITH############################
-jpeg("coreSpeed&maxPower.jpg", width = 750, height = 500)
-autoplot(pca_res, data=dd, colour = 'group_mPower', scale = FALSE) +
-  stat_ellipse(geom="polygon", aes(fill = group_cSpeed), alpha = 0.3, show.legend = TRUE, level = 0.95)
+jpeg("memSpeed&memBand.jpg", width = 750, height = 500)
+autoplot(pca_res, data=dd, colour = 'group_mSpeed', scale = FALSE) +
+  stat_ellipse(geom="polygon", aes(fill = group_mBand), alpha = 0.15, show.legend = TRUE, level = 0.95)
 dev.off()
 ########################################################################################################
+
+####################COMPARATION BETWEEN MEMORY SPEED AND AND MEMORY BANDWITH############################
+jpeg("memSpeed&memType.jpg", width = 750, height = 500)
+autoplot(pca_res, data=dd, colour = 'Memory_Type', scale = FALSE) +
+  stat_ellipse(geom="polygon", aes(fill = group_mSpeed), alpha = 0.15, show.legend = TRUE, level = 0.95)
+dev.off()
+########################################################################################################
+
 
 ```
 
 ```{r}
+autoplot(pca_res, data=dd, scale = FALSE)
 pca.num <- PCA(dd, quali.sup = var_qualitative_ind, graph = TRUE)
-plot(pca.num, label = "none" , habillage = "Memory_Type", invisible = "quali", xlim = c(-7.5, 5.0), ylim= c(3,-3))
+## habillage = "Memory_Type"
+plot(pca.num, label = "none", xlim = c(-7.5, 5.0), ylim= c(3,-3))
 ```
 
 
