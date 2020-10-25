@@ -2,7 +2,7 @@
 output: word_document
 ---
 ```{r}
-path <- ""
+path <- "path.txt"
 path <- readChar(path, file.info(path)$size)
 path <- gsub("[\r\n]", "", path)
 setwd(path) #set the working directory
@@ -17,32 +17,49 @@ K
 Variables numéricas
 ```{r, echo=FALSE}
 listOfColors<-rainbow(39)
+var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Bandwidth", "Memory_Speed", "TMUs", "Texture_Rate")
+var_binarias <- c("Dedicated", "Notebook_GPU", "SLI_Crossfire");
 
 par(ask=TRUE)
-
+s <- 1
 for (i in 1:length(var_numericas)){
-  for (j in 1:length(var_numericas)){
+  for (j in s:length(var_numericas)){
     if (i != j){
-       plot(dd[,var_numericas[i]], dd[,var_numericas[j]], main = paste("Plot", var_numericas[i],var_numericas[j]), xlab = var_numericas[i], ylab = var_numericas[j]) 
+       plot(dd[,var_numericas[i]], dd[,var_numericas[j]], main = paste("Plot", var_numericas[i],var_numericas[j]), xlab = var_numericas[i], ylab = var_numericas[j], pch = 20) 
     }
   }
+  s <- s+1
 }
 
 par(ask=FALSE)
 ```
 
-Variables categoricas
-
-```{r, echo=FALSE}
+```{r}
 #Funciona pero hay demasiadas categorias dentro de una variable. No se puede hacer un estudio multivariable con variables categoricas.
-library(barplot3d)
-for (i in 1:length(var_cualitativas)){
-  for (j in 1:length(var_cualitativas)){
+
+#install.packages("barplot3d")
+#library(barplot3d)
+var_cualitativas <- c("Direct_X", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Resolution_WxH",  "Memory_Bus")
+for (i in var_cualitativas){
+  dd[,i] <- as.factor(dd[,i])
+  print(length(levels(dd[,i])))
+}
+
+par(ask=TRUE)      
+s <- 1
+for (i in var_cualitativas){
+  for (j in var_cualitativas){
     if (i != j){
-      var_aux <- dd[,c(var_cualitativas[i],var_cualitativas[j])]
+      var_aux <- dd[,c(i,j)]
       var_aux$count <- 1
       var_aux <- aggregate(count ~ ., var_aux, FUN = sum)
-      barplot3d(rows=length(dd[,var_cualitativas[j]]), cols = length(dd[,var_cualitativas[j]]), z = var_aux$count, ylabels = dd[,var_cualitativas[j]],  xlabels = dd[,var_cualitativas[j]]])
+      var_aux$count<- (var_aux$count)/sum(var_aux$count)*100
+      barplot3d(rows=length(levels(var_aux[,j])), cols =length(levels(var_aux[,i])), z = var_aux$count, xlabels=levels(var_aux[,i]),
+                ylabels=levels(var_aux[,j]),  xsub=i,ysub=j,zsub="%", 
+                scalexy=5)
     }
   }
+  s <- s+1
 }
+par(ask=FALSE)
+```
