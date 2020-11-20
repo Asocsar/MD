@@ -1,0 +1,132 @@
+```{r}
+# Clear plots
+if(!is.null(dev.list())) dev.off()
+
+
+# Clean workspace
+rm(list=ls())
+```
+
+```{r}
+path <- "path.txt"
+path <- readChar(path, file.info(path)$size)
+setwd(path) #set the working directory
+
+dd <- read.table("clean_table_knn.csv",header=T, sep=",");
+
+dd
+```
+
+
+
+
+```{r}
+library(FactoMineR)
+
+var_numericas <- c("Core_Speed", "L2_Cache", "Max_Power", "Memory", "Memory_Speed", "TMUs", "Texture_Rate", "Memory_Bandwidth")
+var_qualitative <- c("Direct_X","Architecture", "Manufacturer", "Memory_Type", "Open_GL", "Shader", "Resolution_WxH",  "Memory_Bus", "group_cSpeed", "group_mSpeed", "group_mPower","group_TMUs", "group_l2", "group_mem", "group_mBand")
+var_qualitative_ind <- c()
+
+
+
+
+dd_pca_num <- dd[var_numericas]
+
+
+dd_pca_num
+
+cols.dont.want <- c("Release_Date", "Dedicated", "Notebook_GPU", "SLI_Crossfire", "Name") # if you want to remove multiple columns
+
+dd <- dd[, ! names(dd) %in% cols.dont.want, drop = F]
+
+dd
+
+for(k in names(dd[var_qualitative])) {
+  if (is.numeric(dd[1,k])) {
+    dd[,k] <- as.character(dd[,k])
+  }
+  var_qualitative_ind <- c(var_qualitative_ind, grep(k, names(dd)))
+}
+
+
+
+```
+
+
+
+
+```{r}
+#install.packages("ggfortify", "ggplot")
+library(ggfortify)
+library(ggplot2)
+```
+
+
+```{r}
+pca_res <- prcomp(dd_pca_num, scale. = TRUE)
+
+
+
+##########################COMPARATION BETWEEN CORE SPEED AND MAX POWER##################################
+jpeg("coreSpeed&maxPower.jpg", width = 750, height = 500)
+autoplot(pca_res, data=dd, colour = 'group_cSpeed', scale = FALSE) +
+  stat_ellipse(geom="polygon", aes(fill = group_mPower), alpha = 0.15, show.legend = TRUE, level = 0.95)
+dev.off()
+########################################################################################################
+
+##########################COMPARATION BETWEEN MEMORY AND MAX POWER######################################
+jpeg("memory&maxPower.jpg", width = 750, height = 500)
+autoplot(pca_res, data=dd, colour = 'group_mem', scale = FALSE) +
+  stat_ellipse(geom="polygon", aes(fill = group_mPower), alpha = 0.15, show.legend = TRUE, level = 0.95)
+dev.off()
+########################################################################################################
+
+#######################COMPARATION BETWEEN MEMORY BUS AND MEMORY BANDWITH###############################
+jpeg("memBus&memBand.jpg", width = 750, height = 500)
+autoplot(pca_res, data=dd, colour = 'Memory_Bus', scale = FALSE) +
+  stat_ellipse(geom="polygon", aes(fill = group_mBand), alpha = 0.15, show.legend = TRUE, level = 0.95)
+dev.off()
+########################################################################################################
+
+####################COMPARATION BETWEEN MEMORY TYPE AND MEMORY BANDWITH#################################
+jpeg("memType&memBand.jpg", width = 750, height = 500)
+autoplot(pca_res, data=dd, colour = 'Memory_Type', scale = FALSE) +
+  stat_ellipse(geom="polygon", aes(fill = group_mBand), alpha = 0.15, show.legend = TRUE, level = 0.95)
+dev.off()
+########################################################################################################
+
+####################COMPARATION BETWEEN MEMORY SPEED AND AND MEMORY BANDWITH############################
+jpeg("memSpeed&memBand.jpg", width = 750, height = 500)
+autoplot(pca_res, data=dd, colour = 'group_mSpeed', scale = FALSE) +
+  stat_ellipse(geom="polygon", aes(fill = group_mBand), alpha = 0.15, show.legend = TRUE, level = 0.95)
+dev.off()
+########################################################################################################
+
+####################COMPARATION BETWEEN MEMORY SPEED AND AND MEMORY BANDWITH############################
+jpeg("memSpeed&memType.jpg", width = 750, height = 500)
+autoplot(pca_res, data=dd, colour = 'Memory_Type', scale = FALSE) +
+  stat_ellipse(geom="polygon", aes(fill = group_mSpeed), alpha = 0.15, show.legend = TRUE, level = 0.95)
+dev.off()
+########################################################################################################
+
+
+```
+
+```{r}
+pca.num <- PCA(dd, quali.sup = var_qualitative_ind, graph = TRUE)
+plot(pca.num, label = "none", xlim = c(-7.5, 5.0), ylim= c(3,-3))
+```
+
+
+
+```{r}
+pca.num$eig
+```
+
+
+```{r}
+barplot(pca.num$eig[9:16]/100)
+barplot(pca.num$eig[17:24])
+abline(h=80, col="orange")
+abline(h=90, col="orange")
+```
